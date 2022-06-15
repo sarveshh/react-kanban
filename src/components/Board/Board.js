@@ -4,20 +4,21 @@ import { MdEdit } from "react-icons/md";
 import { AiFillDelete } from "react-icons/ai";
 import Card from "../Card/Card";
 import AddCard from "../AddCard/AddCard";
+import { BoardContainer, BoardHeader, AllCardsContainer } from "./BoardStyles";
 
 const Board = () => {
   return (
-    <Box>
-      <Box>
+    <BoardContainer>
+      <BoardHeader>
         <Typography variant="h5">Board Title 2</Typography>
         <MdEdit />
         <AiFillDelete />
-      </Box>
-      <Box className="all_cards">
+      </BoardHeader>
+      <AllCardsContainer>
         <Card />
-      </Box>
+      </AllCardsContainer>
       <AddCard />
-    </Box>
+    </BoardContainer>
   );
 };
 

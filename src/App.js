@@ -19,7 +19,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Navbar />
-        <Box display="flex" justifyContent="space-around">
+        <Box display="flex" justifyContent="space-between">
           <Board />
           <Board />
           <Board />

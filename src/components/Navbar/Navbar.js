@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -11,7 +11,7 @@ import FormGroup from "@mui/material/FormGroup";
 import { IoMdLogIn } from "react-icons/io";
 
 export default function MenuAppBar() {
-  const [auth, setAuth] = React.useState(true);
+  const [auth, setAuth] = useState(true);
 
   const handleChange = (event) => {
     setAuth(event.target.checked);

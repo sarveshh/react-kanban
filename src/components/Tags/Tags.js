@@ -1,15 +1,16 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 import { IoIosClose } from "react-icons/io";
+import { TagsContainer } from "./TagsStyles";
 
 const Tags = (props) => {
   return (
-    <Box style={{ backgroundColor: props.color }}>
+    <TagsContainer style={{ backgroundColor: props.color }}>
       {props.text}
       {props.close && (
         <IoIosClose onClick={props.onClose ? props.onClose() : ""} />
       )}
-    </Box>
+    </TagsContainer>
   );
 };
 
