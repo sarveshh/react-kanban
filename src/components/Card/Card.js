@@ -9,13 +9,17 @@ import Tags from "../Tags/Tags";
 const Card = () => {
   return (
     <CardContainer>
+      <Tags text="Frontend" />
+      <Tags text="Backend" />
       <CardHeader>
-        <Tags text="Frontend" color="#f5f5f5" />
         <Typography variant="h5">Card Title</Typography>
-        <MdEdit />
-        <AiFillDelete />
+        <Box>
+          <MdEdit />
+          <AiFillDelete />
+        </Box>
       </CardHeader>
       <CardFooter className="card_footer">
+        <Typography variant="body1">29Sept</Typography>
         <BsCheck2Circle />
         {/* <Clock /> */}
       </CardFooter>

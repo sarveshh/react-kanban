@@ -20,10 +20,10 @@ function App() {
         <CssBaseline />
         <Navbar />
         <Box display="flex" justifyContent="space-between">
-          <Board />
-          <Board />
-          <Board />
-          <Board />
+          <Board title="Backlog" />
+          <Board title="To do" />
+          <Board title="Ongoing" />
+          <Board title="Done" />
         </Box>
       </ThemeProvider>
     </div>

@@ -1,20 +1,20 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { MdEdit } from "react-icons/md";
 import { AiFillDelete } from "react-icons/ai";
 import Card from "../Card/Card";
 import AddCard from "../AddCard/AddCard";
 import { BoardContainer, BoardHeader, AllCardsContainer } from "./BoardStyles";
 
-const Board = () => {
+const Board = (props) => {
   return (
     <BoardContainer>
       <BoardHeader>
-        <Typography variant="h5">Board Title 2</Typography>
+        <Typography variant="h5">{props.title}</Typography>
         <MdEdit />
-        <AiFillDelete />
       </BoardHeader>
       <AllCardsContainer>
+        <Card />
         <Card />
       </AllCardsContainer>
       <AddCard />

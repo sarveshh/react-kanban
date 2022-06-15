@@ -1,16 +1,15 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
-import { IoIosClose } from "react-icons/io";
-import { TagsContainer } from "./TagsStyles";
+import { Chip } from "@mui/material";
 
 const Tags = (props) => {
   return (
-    <TagsContainer style={{ backgroundColor: props.color }}>
-      {props.text}
-      {props.close && (
-        <IoIosClose onClick={props.onClose ? props.onClose() : ""} />
-      )}
-    </TagsContainer>
+    <Chip
+      label={props.text}
+      color={props.color ? props.color : "default"}
+      onClick={props.onClose ? props.onClose() : ""}
+      onDelete={props.onDelete ? props.onDelete() : ""}
+      size="medium"
+    />
   );
 };
 
