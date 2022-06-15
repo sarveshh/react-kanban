@@ -1,21 +1,24 @@
 import React from "react";
 import { Typography } from "@mui/material";
 import { MdEdit } from "react-icons/md";
-import { AiFillDelete } from "react-icons/ai";
 import Card from "../Card/Card";
 import AddCard from "../AddCard/AddCard";
 import { BoardContainer, BoardHeader, AllCardsContainer } from "./BoardStyles";
 
-const Board = (props) => {
+const Board = ({ board }) => {
   return (
     <BoardContainer>
       <BoardHeader>
-        <Typography variant="h5">{props.title}</Typography>
+        <Typography variant="h5">
+          {board?.title}
+          {board?.cards?.length}
+        </Typography>
         <MdEdit />
       </BoardHeader>
       <AllCardsContainer>
-        <Card />
-        <Card />
+        {board?.cards?.map((card) => (
+          <Card key={card.id} card={card} />
+        ))}
       </AllCardsContainer>
       <AddCard />
     </BoardContainer>

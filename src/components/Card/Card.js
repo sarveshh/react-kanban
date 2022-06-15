@@ -6,22 +6,22 @@ import { BsCheck2Circle } from "react-icons/bs";
 import { CardContainer, CardFooter, CardHeader } from "./CardStyles";
 import Tags from "../Tags/Tags";
 
-const Card = () => {
+const Card = ({ card }) => {
   return (
     <CardContainer>
-      <Tags text="Frontend" />
-      <Tags text="Backend" />
+      {card?.tags?.map((tag, index) => (
+        <Tags key={index} text={tag.text} color={tag.color} />
+      ))}
       <CardHeader>
-        <Typography variant="h5">Card Title</Typography>
+        <Typography variant="h5">{card.title}</Typography>
         <Box>
           <MdEdit />
           <AiFillDelete />
         </Box>
       </CardHeader>
       <CardFooter className="card_footer">
-        <Typography variant="body1">29Sept</Typography>
+        <Typography variant="body1">{card.date}</Typography>
         <BsCheck2Circle />
-        {/* <Clock /> */}
       </CardFooter>
     </CardContainer>
   );
