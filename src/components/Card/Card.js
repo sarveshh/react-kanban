@@ -10,9 +10,9 @@ const Card = (props) => {
   return (
     <CardContainer
       draggable
-      onDragEnd={() => props.handleCardDragLeave(props.card?.is, props.boardId)}
+      onDragEnd={() => props.handleCardDragLeave(props.card?.id, props.boardId)}
       onDragEnter={() =>
-        props.handleCardDragEnter(props.card?.is, props.boardId)
+        props.handleCardDragEnter(props.card?.id, props.boardId)
       }
     >
       {props.card?.tags?.map((tag, index) => (
