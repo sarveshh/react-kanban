@@ -10,7 +10,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { register } from "../store/actions";
+import { registerInitiate } from "../store/actions";
 
 const theme = createTheme();
 
@@ -35,7 +35,7 @@ export default function SignUp() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(register(name, username, email, password, contactNumber));
+    dispatch(registerInitiate(name, username, email, password, contactNumber));
     setState({
       name: "",
       username: "",

@@ -1,10 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import { AiFillLock } from "react-icons/ai";
@@ -12,18 +10,36 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate, Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { loginInitiate } from "../store/actions";
 
 const theme = createTheme();
 
 export default function SignIn() {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const handleGoogleSignIn = () => {};
-  const handleChange = () => {};
-  const handleSubmit = () => {};
+  const { currentUser } = useSelector((state) => state.user);
+  const navigate = useNavigate();
 
-  const [state, setState] = React.useState({
+  useEffect(() => {
+    if (currentUser) {
+      navigate("/");
+    }
+  }, [currentUser, navigate]);
+  const handleGoogleSignIn = () => {};
+  const handleChange = (e) => {
+    let { name, value } = e.target;
+    setState({ ...state, [name]: value });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!email || !password) {
+      return;
+    }
+    dispatch(loginInitiate(email, password));
+    setState({ email: "", password: "" });
+  };
+
+  const [state, setState] = useState({
     email: "",
     password: "",
   });

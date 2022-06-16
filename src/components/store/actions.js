@@ -1,7 +1,7 @@
 import * as types from "./actionTypes";
 import { auth } from "../../firebase";
 
-const registrInitiate = () => ({
+const registerStart = () => ({
   type: types.REGISTER_START,
 });
 
@@ -15,9 +15,42 @@ const registerFail = (error) => ({
   payload: error,
 });
 
-export const register = (name, username, email, password, contactNumber) => {
+const loginStart = () => ({
+  type: types.LOGIN_START,
+});
+
+const loginSuccess = (user) => ({
+  type: types.LOGIN_SUCCESS,
+  payload: user,
+});
+
+const loginFail = (error) => ({
+  type: types.LOGIN_FAIL,
+  payload: error,
+});
+
+const logoutStart = () => ({
+  type: types.LOGOUT_START,
+});
+
+const logoutSuccess = () => ({
+  type: types.LOGOUT_SUCCESS,
+});
+
+const logoutFail = (error) => ({
+  type: types.LOGOUT_FAIL,
+  payload: error,
+});
+
+export const registerInitiate = (
+  name,
+  username,
+  email,
+  password,
+  contactNumber
+) => {
   return function (dispatch) {
-    dispatch(registrInitiate);
+    dispatch(registerStart());
     auth
       .createUserWithEmailAndPassword(email, password)
       .then(({ user }) => {
@@ -26,6 +59,30 @@ export const register = (name, username, email, password, contactNumber) => {
         });
         dispatch(registerSuccess(user));
       })
-      .catch((error) => registerFail(error.message));
+      .catch((error) => dispatch(registerFail(error.message)));
+  };
+};
+
+export const loginInitiate = (email, password) => {
+  return function (dispatch) {
+    dispatch(loginStart());
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then(({ user }) => {
+        dispatch(loginSuccess(user));
+      })
+      .catch((error) => dispatch(loginFail(error.message)));
+  };
+};
+
+export const logoutInitiate = () => {
+  return function (dispatch) {
+    dispatch(logoutStart());
+    auth
+      .signOut()
+      .then((resp) => {
+        dispatch(logoutSuccess());
+      })
+      .catch((error) => dispatch(logoutFail(error.message)));
   };
 };
