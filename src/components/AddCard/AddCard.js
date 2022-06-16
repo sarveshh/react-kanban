@@ -4,6 +4,7 @@ import { IoIosClose } from "react-icons/io";
 
 const AddCard = (props) => {
   const [show, setShow] = useState(false);
+  const [inputValue, setInputValue] = useState("");
   return (
     <Box>
       {show ? (
@@ -11,23 +12,26 @@ const AddCard = (props) => {
           onSubmit={(event) => {
             event.preventDefault();
             if (props.onSubmit) {
-              props.onSubmit();
+              props.onSubmit(inputValue);
             }
+            setShow(false);
+            setInputValue("");
           }}
         >
           <input
             type="text"
-            defaultValue={props.text}
-            placeholder={props.placeholder}
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            placeholder="Add Task"
           />
           <Box className="footer">
-            <Button type="submit">{props.buttonText || "Add card"}</Button>
+            <Button type="submit">Add card</Button>
             <IoIosClose onClick={() => setShow(false)} />
           </Box>
         </form>
       ) : (
         <Typography variant="h5" onClick={() => setShow(true)}>
-          {props.text || "Add card"}
+          Add card
         </Typography>
       )}
     </Box>

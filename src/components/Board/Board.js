@@ -5,22 +5,29 @@ import Card from "../Card/Card";
 import AddCard from "../AddCard/AddCard";
 import { BoardContainer, BoardHeader, AllCardsContainer } from "./BoardStyles";
 
-const Board = ({ board }) => {
+const Board = (props) => {
   return (
     <BoardContainer>
       <BoardHeader>
         <Typography variant="h5">
-          {board?.title}
-          {board?.cards?.length}
+          {props.board?.title}
+          {props.board?.cards?.length}
         </Typography>
         <MdEdit />
       </BoardHeader>
       <AllCardsContainer>
-        {board?.cards?.map((card) => (
-          <Card key={card.id} card={card} />
+        {props.board?.cards?.map((card) => (
+          <Card
+            key={card.id}
+            card={card}
+            removeCard={props.removeCard}
+            boardId={props.board?.id}
+            handleCardDragEnter={props.handleCardDragEnter}
+            handleCardDragLeave={props.handleCardDragLeave}
+          />
         ))}
       </AllCardsContainer>
-      <AddCard />
+      <AddCard onSubmit={(value) => props.addCard(value, props.board?.id)} />
     </BoardContainer>
   );
 };
