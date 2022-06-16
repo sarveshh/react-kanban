@@ -86,3 +86,8 @@ export const logoutInitiate = () => {
       .catch((error) => dispatch(logoutFail(error.message)));
   };
 };
+
+export const setUser = (user) => ({
+  type: types.SET_USER,
+  payload: user,
+});
