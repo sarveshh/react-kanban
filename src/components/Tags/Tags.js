@@ -6,8 +6,8 @@ const Tags = (props) => {
     <Chip
       label={props.text}
       color={props.color ? props.color : "default"}
-      // onClick={props.onClose ? props.onClose() : ""}
-      // onDelete={props.onDelete ? props.onDelete() : ""}
+      onClick={() => (props.onClose ? props.onClose() : "")}
+      onDelete={() => (props.onClose ? props.onClose() : "")}
       size="medium"
     />
   );

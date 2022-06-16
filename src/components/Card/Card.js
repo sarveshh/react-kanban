@@ -12,7 +12,13 @@ const Card = (props) => {
   return (
     <>
       {showCardInfo && (
-        <CardInfo onClose={() => setShowCardInfo(false)} open={showCardInfo} />
+        <CardInfo
+          card={props.card}
+          onClose={() => setShowCardInfo(false)}
+          open={showCardInfo}
+          updateCard={props.updateCard}
+          boardId={props.boardId}
+        />
       )}
       <CardContainer
         draggable

@@ -209,6 +209,20 @@ function App() {
     setBoards(tempBoards);
   };
 
+  const updateCard = (cardId, boardId, card) => {
+    const boardIndex = boards.findIndex((board) => board.id === boardId);
+    if (boardIndex < 0) return;
+
+    const cardIndex = boards[boardIndex].cards.findIndex(
+      (card) => card.id === cardId
+    );
+    if (cardIndex < 0) return;
+
+    const newBoards = [...boards];
+    newBoards[boardIndex].cards[cardIndex] = card;
+    setBoards(newBoards);
+  };
+
   return (
     <div>
       <ThemeProvider theme={theme}>
@@ -223,6 +237,7 @@ function App() {
               removeCard={removeCard}
               handleCardDragEnter={handleCardDragEnter}
               handleCardDragLeave={handleCardDragLeave}
+              updateCard={updateCard}
             />
           ))}
         </Box>

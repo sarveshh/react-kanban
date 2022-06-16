@@ -24,6 +24,7 @@ const Board = (props) => {
             boardId={props.board?.id}
             handleCardDragEnter={props.handleCardDragEnter}
             handleCardDragLeave={props.handleCardDragLeave}
+            updateCard={props.updateCard}
           />
         ))}
       </AllCardsContainer>
