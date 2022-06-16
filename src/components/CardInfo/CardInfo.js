@@ -52,6 +52,29 @@ export default function CardInfo(props) {
     setValues({ ...values, labels: tempLabels });
   };
 
+  const addTasks = (value) => {
+    const task = {
+      id: values.tasks?.length + 1,
+      text: value,
+      completed: false,
+    };
+    setValues({ ...values, tasks: [...values.tasks, task] });
+  };
+
+  const removeTask = (id) => {
+    const tempTasks = values.tasks?.filter((task) => task.id !== id);
+    setValues({ ...values, tasks: tempTasks });
+  };
+
+  const updateTask = (id, completed) => {
+    const index = values.tasks?.findIndex((task) => task.id === id);
+    if (index === -1) return;
+
+    const tempTasks = [...values.tasks];
+    tempTasks[index].completed = completed;
+    setValues({ ...values, tasks: tempTasks });
+  };
+
   useEffect(() => {
     props.updateCard(props.card.id, props.boardId, values);
   }, [values]);
@@ -136,15 +159,20 @@ export default function CardInfo(props) {
               ))}
               {values.tasks.map((task, index) => (
                 <Box key={index}>
-                  <input type="checkbox" defaultValue={task.completed} />
+                  <input
+                    type="checkbox"
+                    defaultValue={task.completed}
+                    onChange={(e) => updateTask(task.id, e.target.checked)}
+                  />
                   <p>{task.text}</p>
-                  <AiFillDelete />
+                  <AiFillDelete onClick={() => removeTask(task.id)} />
                 </Box>
               ))}
               <TextField
                 id="outlined-basic"
                 label="Add task"
                 variant="outlined"
+                onSubmit={(e) => addTasks(e.target.value)}
               />
             </Box>
           </Box>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Navbar from "./components/Navbar/Navbar";
 
@@ -14,136 +14,138 @@ function App() {
     },
   });
 
-  const [boards, setBoards] = useState([
-    {
-      id: 1,
-      title: "Backlog",
-      cards: [
-        {
-          id: 1,
-          title: "Card 1",
-          description: "This is a card",
-          tasks: [],
-          tags: [
-            {
-              text: "Frontend",
-              color: "default",
-            },
-          ],
-          date: "2020-01-01",
-        },
-        {
-          id: 2,
-          title: "Card 2",
-          description: "This is a card 2",
-          tasks: [],
-          tags: [
-            {
-              text: "Backend",
-              color: "primary",
-            },
-          ],
-          date: "2020-01-01",
-        },
-      ],
-    },
-    {
-      id: 2,
-      title: "To Do",
-      cards: [
-        {
-          id: 3,
-          title: "Card 1",
-          description: "This is a card",
-          tasks: [],
-          tags: [
-            {
-              text: "Frontend",
-              color: "default",
-            },
-          ],
-          date: "2020-01-01",
-        },
-        {
-          id: 4,
-          title: "Card 2",
-          description: "This is a card 2",
-          tasks: [],
-          tags: [
-            {
-              text: "Backend",
-              color: "primary",
-            },
-          ],
-          date: "2020-01-01",
-        },
-      ],
-    },
-    {
-      id: 3,
-      title: "Ongoing",
-      cards: [
-        {
-          id: 5,
-          title: "Card 1",
-          description: "This is a card",
-          tasks: [],
-          tags: [
-            {
-              text: "Frontend",
-              color: "default",
-            },
-          ],
-          date: "2020-01-01",
-        },
-        {
-          id: 6,
-          title: "Card 2",
-          description: "This is a card 2",
-          tasks: [],
-          tags: [
-            {
-              text: "Backend",
-              color: "primary",
-            },
-          ],
-          date: "2020-01-01",
-        },
-      ],
-    },
-    {
-      id: 4,
-      title: "Done",
-      cards: [
-        {
-          id: 5,
-          title: "Card 1",
-          description: "This is a card",
-          tasks: [],
-          tags: [
-            {
-              text: "Frontend",
-              color: "default",
-            },
-          ],
-          date: "2020-01-01",
-        },
-        {
-          id: 6,
-          title: "Card 2",
-          description: "This is a card 2",
-          tasks: [],
-          tags: [
-            {
-              text: "Backend",
-              color: "primary",
-            },
-          ],
-          date: "2020-01-01",
-        },
-      ],
-    },
-  ]);
+  const [boards, setBoards] = useState(
+    JSON.parse(localStorage.getItem("kanban")) || [
+      {
+        id: 1,
+        title: "Backlog",
+        cards: [
+          {
+            id: 1,
+            title: "Card 1",
+            description: "This is a card",
+            tasks: [],
+            tags: [
+              {
+                text: "Frontend",
+                color: "default",
+              },
+            ],
+            date: "2020-01-01",
+          },
+          {
+            id: 2,
+            title: "Card 2",
+            description: "This is a card 2",
+            tasks: [],
+            tags: [
+              {
+                text: "Backend",
+                color: "primary",
+              },
+            ],
+            date: "2020-01-01",
+          },
+        ],
+      },
+      {
+        id: 2,
+        title: "To Do",
+        cards: [
+          {
+            id: 3,
+            title: "Card 1",
+            description: "This is a card",
+            tasks: [],
+            tags: [
+              {
+                text: "Frontend",
+                color: "default",
+              },
+            ],
+            date: "2020-01-01",
+          },
+          {
+            id: 4,
+            title: "Card 2",
+            description: "This is a card 2",
+            tasks: [],
+            tags: [
+              {
+                text: "Backend",
+                color: "primary",
+              },
+            ],
+            date: "2020-01-01",
+          },
+        ],
+      },
+      {
+        id: 3,
+        title: "Ongoing",
+        cards: [
+          {
+            id: 5,
+            title: "Card 1",
+            description: "This is a card",
+            tasks: [],
+            tags: [
+              {
+                text: "Frontend",
+                color: "default",
+              },
+            ],
+            date: "2020-01-01",
+          },
+          {
+            id: 6,
+            title: "Card 2",
+            description: "This is a card 2",
+            tasks: [],
+            tags: [
+              {
+                text: "Backend",
+                color: "primary",
+              },
+            ],
+            date: "2020-01-01",
+          },
+        ],
+      },
+      {
+        id: 4,
+        title: "Done",
+        cards: [
+          {
+            id: 5,
+            title: "Card 1",
+            description: "This is a card",
+            tasks: [],
+            tags: [
+              {
+                text: "Frontend",
+                color: "default",
+              },
+            ],
+            date: "2020-01-01",
+          },
+          {
+            id: 6,
+            title: "Card 2",
+            description: "This is a card 2",
+            tasks: [],
+            tags: [
+              {
+                text: "Backend",
+                color: "primary",
+              },
+            ],
+            date: "2020-01-01",
+          },
+        ],
+      },
+    ]
+  );
 
   const [target, setTarget] = useState({
     cardId: "",
@@ -222,6 +224,10 @@ function App() {
     newBoards[boardIndex].cards[cardIndex] = card;
     setBoards(newBoards);
   };
+
+  useEffect(() => {
+    localStorage.setItem("kanban", JSON.stringify(boards));
+  }, [boards]);
 
   return (
     <div>

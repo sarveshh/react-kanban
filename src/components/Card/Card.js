@@ -44,7 +44,13 @@ const Card = (props) => {
         </CardHeader>
         <CardFooter className="card_footer">
           <Typography variant="body1">{props.card.date}</Typography>
-          <BsCheck2Circle />
+          {props.card?.tasks?.length > 0 && (
+            <>
+              <BsCheck2Circle />
+              {props.card?.tasks?.filter((item) => item.completed.length)}/
+              {props.card?.tasks?.length}
+            </>
+          )}
         </CardFooter>
       </CardContainer>
     </>
