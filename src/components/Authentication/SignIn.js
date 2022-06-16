@@ -11,7 +11,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { loginInitiate } from "../store/actions";
+import { loginInitiate, googleSignInInitiate } from "../store/actions";
 
 const theme = createTheme();
 
@@ -25,7 +25,9 @@ export default function SignIn() {
       navigate("/");
     }
   }, [currentUser, navigate]);
-  const handleGoogleSignIn = () => {};
+  const handleGoogleSignIn = () => {
+    dispatch(googleSignInInitiate());
+  };
   const handleChange = (e) => {
     let { name, value } = e.target;
     setState({ ...state, [name]: value });
@@ -100,7 +102,11 @@ export default function SignIn() {
             >
               Sign In
             </Button>
-            <Button fullWidth variant="contained">
+            <Button
+              fullWidth
+              variant="contained"
+              onClick={() => handleGoogleSignIn()}
+            >
               Sign In With Google
             </Button>
             <Grid container>
