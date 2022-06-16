@@ -2,6 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 
+import { Provider } from "react-redux";
+import { store } from "./components/store/store";
+
 //MUI Imports
 import GlobalStyles from "@mui/material/GlobalStyles";
 
@@ -16,7 +19,9 @@ const globalStyle = {
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <GlobalStyles styles={globalStyle} />
-    <App />
+    <Provider store={store}>
+      <GlobalStyles styles={globalStyle} />
+      <App />
+    </Provider>
   </React.StrictMode>
 );

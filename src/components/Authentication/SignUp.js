@@ -1,7 +1,6 @@
-import React, { useRef } from "react";
+import React, { useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -9,24 +8,47 @@ import { AiFillLock } from "react-icons/ai";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useNavigate, Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { register } from "../store/actions";
 
 const theme = createTheme();
 
 export default function SignUp() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
+  const dispatch = useDispatch();
+  const { currentUser } = useSelector((state) => state.user);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (currentUser) {
+      navigate("/");
+    }
+  }, [currentUser, navigate]);
+
+  const [state, setState] = React.useState({
+    name: "",
+    username: "",
+    email: "",
+    password: "",
+    contactNumber: "",
+  });
+  const { name, username, email, password, contactNumber } = state;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(register(name, username, email, password, contactNumber));
+    setState({
+      name: "",
+      username: "",
+      email: "",
+      password: "",
+      contactNumber: "",
     });
   };
-  const nameRef = useRef();
-  const contactNumberRef = useRef();
-  const usernameRef = useRef();
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  const passwordConfirmRef = useRef();
+
+  const handleChange = (e) => {
+    let { name, value } = e.target;
+    setState({ ...state, [name]: value });
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -61,7 +83,8 @@ export default function SignUp() {
                   id="name"
                   label="Name"
                   autoFocus
-                  ref={nameRef}
+                  onChange={handleChange}
+                  value={name}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -72,7 +95,8 @@ export default function SignUp() {
                   label="Username"
                   name="username"
                   autoComplete="username"
-                  ref={usernameRef}
+                  onChange={handleChange}
+                  value={username}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -83,10 +107,11 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
-                  ref={emailRef}
+                  value={email}
+                  onChange={handleChange}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
@@ -95,31 +120,20 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
-                  ref={passwordRef}
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  name="confirmPassword"
-                  label="Confirm Password"
-                  type="password"
-                  id="confirmPassword"
-                  autoComplete="new-password"
-                  ref={passwordConfirmRef}
+                  onChange={handleChange}
+                  value={password}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  required
                   fullWidth
                   name="contactNumber"
                   label="Contact Number"
                   type="number"
                   id="contactNumber"
                   autoComplete="Contact Number"
-                  ref={contactNumberRef}
+                  onChange={handleChange}
+                  value={contactNumber}
                 />
               </Grid>
             </Grid>
@@ -132,6 +146,11 @@ export default function SignUp() {
               Sign Up
             </Button>
           </Box>
+          <Grid item>
+            <Link to="/signin" variant="body2">
+              {"Already have an account? Sign In"}
+            </Link>
+          </Grid>
         </Box>
       </Container>
     </ThemeProvider>

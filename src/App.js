@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 //Components
 import Navbar from "./components/Navbar/Navbar";
@@ -27,7 +27,7 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/signup" element={<SignUp />} />
-            <Route path="/login" element={<SignIn />} />
+            <Route path="/signin" element={<SignIn />} />
             <Route exact path="/" element={<LoggedInLayout />} />
           </Routes>
         </ThemeProvider>
