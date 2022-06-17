@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Board from "./Board/Board";
 
 import { Box } from "@mui/material";
+import TrashIcon from "./TrashIcon";
 
 const LoggedInLayout = () => {
   const [boards, setBoards] = useState(
@@ -124,6 +125,7 @@ const LoggedInLayout = () => {
           updateCard={updateCard}
         />
       ))}
+      <TrashIcon />
     </Box>
   );
 };

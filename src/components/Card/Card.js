@@ -3,10 +3,8 @@ import { Typography } from "@mui/material";
 import { MdEdit } from "react-icons/md";
 import { AiFillDelete } from "react-icons/ai";
 import { FaBackward, FaForward } from "react-icons/fa";
-import { BsCheck2Circle } from "react-icons/bs";
 import { CardContainer, CardFooter, CardHeader } from "./CardStyles";
-import Tags from "../Tags/Tags";
-import CardInfo from "../CardInfo/CardInfo";
+import CardInfo from "./CardInfo/CardInfo";
 
 const Card = (props) => {
   const [showCardInfo, setShowCardInfo] = React.useState(false);

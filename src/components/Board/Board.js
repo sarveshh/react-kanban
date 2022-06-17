@@ -1,7 +1,7 @@
 import React from "react";
 import { Typography } from "@mui/material";
 import Card from "../Card/Card";
-import AddCard from "../AddCard/AddCard";
+import AddCard from "../Card/AddCard/AddCard";
 import { BoardContainer, BoardHeader, AllCardsContainer } from "./BoardStyles";
 
 const Board = (props) => {
