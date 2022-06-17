@@ -5,6 +5,14 @@ import { Box } from "@mui/material";
 import TrashIcon from "./TrashIcon";
 
 const LoggedInLayout = () => {
+  const [openTrash, setOpenTrash] = React.useState(false);
+  const handleClose = () => {
+    setOpenTrash(false);
+  };
+  const handleToggle = () => {
+    setOpenTrash(!openTrash);
+  };
+
   const [boards, setBoards] = useState(
     JSON.parse(localStorage.getItem("kanban")) || [
       {
@@ -67,6 +75,7 @@ const LoggedInLayout = () => {
 
   const handleCardDragEnter = (cardId, boardId) => {
     setTarget({ cardId, boardId });
+    setOpenTrash(!openTrash);
   };
 
   const handleCardDragLeave = (cardId, boardId) => {
@@ -92,6 +101,7 @@ const LoggedInLayout = () => {
     tempBoards[sourceBoardIndex].cards.splice(sourceCardIndex, 1);
     tempBoards[targetBoardIndex].cards.splice(targetCardIndex, 0, tempCard);
     setBoards(tempBoards);
+    setOpenTrash(false);
   };
 
   const updateCard = (cardId, boardId, card) => {
@@ -125,7 +135,13 @@ const LoggedInLayout = () => {
           updateCard={updateCard}
         />
       ))}
-      <TrashIcon />
+      {openTrash && (
+        <TrashIcon
+          openTrash={openTrash}
+          handleClose={handleClose}
+          handleToggle={handleToggle}
+        />
+      )}
     </Box>
   );
 };
