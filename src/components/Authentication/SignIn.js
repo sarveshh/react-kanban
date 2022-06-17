@@ -13,6 +13,8 @@ import { useNavigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginInitiate, googleSignInInitiate } from "../store/actions";
 import ReCAPTCHA from "react-google-recaptcha";
+import { FcGoogle } from "react-icons/fc";
+import { IconContext } from "react-icons/lib";
 
 const theme = createTheme();
 
@@ -109,9 +111,21 @@ export default function SignIn() {
             </Button>
             <Button
               fullWidth
-              variant="contained"
+              variant="outlined"
               onClick={() => handleGoogleSignIn()}
             >
+              <IconContext.Provider
+                value={{
+                  style: {
+                    width: "30px",
+                    height: "30px",
+                    marginRight: "10px",
+                    marginBottom: "5px",
+                  },
+                }}
+              >
+                <FcGoogle />
+              </IconContext.Provider>
               Sign In With Google
             </Button>
             <Grid container>
