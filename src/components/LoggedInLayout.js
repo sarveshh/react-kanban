@@ -115,6 +115,40 @@ const LoggedInLayout = () => {
     localStorage.setItem("kanban", JSON.stringify(boards));
   }, [boards]);
 
+  //Shift card to previous block
+  const shiftCard = (cardId, boardId) => {
+    const boardIndex = boards.findIndex((board) => board.id === boardId);
+    if (boardIndex < 0) return;
+
+    const cardIndex = boards[boardIndex].cards.findIndex(
+      (card) => card.id === cardId
+    );
+    if (cardIndex < 0) return;
+
+    const newBoards = [...boards];
+    const tempCard = newBoards[boardIndex].cards[cardIndex];
+    newBoards[boardIndex].cards.splice(cardIndex, 1);
+    newBoards[boardIndex - 1].cards.push(tempCard);
+    setBoards(newBoards);
+  };
+
+  //Shift card to next block\
+  const shiftCardToNext = (cardId, boardId) => {
+    const boardIndex = boards.findIndex((board) => board.id === boardId);
+    if (boardIndex < 0) return;
+
+    const cardIndex = boards[boardIndex].cards.findIndex(
+      (card) => card.id === cardId
+    );
+    if (cardIndex < 0) return;
+
+    const newBoards = [...boards];
+    const tempCard = newBoards[boardIndex].cards[cardIndex];
+    newBoards[boardIndex].cards.splice(cardIndex, 1);
+    newBoards[boardIndex + 1].cards.push(tempCard);
+    setBoards(newBoards);
+  };
+
   return (
     <Box display="flex" justifyContent="space-between">
       {boards.map((board) => (
@@ -126,6 +160,8 @@ const LoggedInLayout = () => {
           handleCardDragEnter={handleCardDragEnter}
           handleCardDragLeave={handleCardDragLeave}
           updateCard={updateCard}
+          shiftCard={shiftCard}
+          shiftCardToNext={shiftCardToNext}
         />
       ))}
     </Box>

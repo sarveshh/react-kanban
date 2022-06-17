@@ -37,12 +37,16 @@ const Card = (props) => {
           <Typography variant="body1">{props.card.date}</Typography>
         </CardFooter>
         <CardFooter>
-          <FaBackward />
+          <FaBackward
+            onClick={() => props.shiftCard(props.card?.id, props.boardId)}
+          />
           <MdEdit />
           <AiFillDelete
             onClick={() => props.removeCard(props.card?.id, props.boardId)}
           />
-          <FaForward />
+          <FaForward
+            onClick={() => props.shiftCardToNext(props.card?.id, props.boardId)}
+          />
         </CardFooter>
       </CardContainer>
     </>
