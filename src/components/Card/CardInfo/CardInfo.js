@@ -10,12 +10,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 
-import {
-  IconButton,
-  Tooltip,
-  Checkbox,
-  DialogContentText,
-} from "@mui/material";
+import { IconButton, Tooltip, Checkbox } from "@mui/material";
 import { customIcons } from "../../../data";
 
 export default function CardInfo(props) {
@@ -46,6 +41,7 @@ export default function CardInfo(props) {
           <Box display="flex" alignItems="center" justifyContent="center">
             <Checkbox
               sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
+              checked={values.completed}
               onChange={() =>
                 setValues({ ...values, completed: !values.completed })
               }

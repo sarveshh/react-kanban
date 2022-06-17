@@ -60,7 +60,7 @@ const LoggedInLayout = () => {
     const newBoards = [...boards];
     newBoards[index].cards = newBoards[index].cards.map((card) => {
       if (card.id === cardId) {
-        card.completed = true;
+        card.completed = !card.completed;
       }
       return card;
     });
