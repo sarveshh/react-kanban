@@ -2,16 +2,9 @@ import React, { useState, useEffect } from "react";
 import Board from "./Board/Board";
 
 import { Box } from "@mui/material";
-import TrashIcon from "./TrashIcon";
 
 const LoggedInLayout = () => {
   const [openTrash, setOpenTrash] = React.useState(false);
-  const handleClose = () => {
-    setOpenTrash(false);
-  };
-  const handleToggle = () => {
-    setOpenTrash(!openTrash);
-  };
 
   const [boards, setBoards] = useState(
     JSON.parse(localStorage.getItem("kanban")) || [
@@ -135,13 +128,6 @@ const LoggedInLayout = () => {
           updateCard={updateCard}
         />
       ))}
-      {openTrash && (
-        <TrashIcon
-          openTrash={openTrash}
-          handleClose={handleClose}
-          handleToggle={handleToggle}
-        />
-      )}
     </Box>
   );
 };
