@@ -18,7 +18,7 @@ import { useDispatch } from "react-redux";
 
 function App() {
   const dispatch = useDispatch();
-  const [themeValue, setThemeValue] = useState("light");
+  const [isLightMode, setIsLightMode] = useState(true);
 
   useEffect(() => {
     //Setting auth state app wide
@@ -37,7 +37,24 @@ function App() {
       danger: "#e53e3e",
     },
     palette: {
-      mode: themeValue,
+      mode: isLightMode ? "light" : "dark",
+      background: {
+        boardBg: isLightMode ? "#fafafa" : "#1a1a1a",
+      },
+      borders: {
+        boardBorders: isLightMode ? "#e5e5e5" : "rgba(42,43,56,.5)",
+      },
+      textColor: {
+        boardText: isLightMode ? "black" : "#808080",
+      },
+    },
+    typography: {
+      h6: {
+        color: isLightMode ? "black" : "black",
+      },
+      h6: {
+        color: isLightMode ? "black" : "black",
+      },
     },
   });
 
@@ -46,7 +63,7 @@ function App() {
       <BrowserRouter>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <Navbar />
+          <Navbar isLightMode={isLightMode} setIsLightMode={setIsLightMode} />
           <Routes>
             <Route path="/signup" element={<SignUp />} />
             <Route path="/signin" element={<SignIn />} />

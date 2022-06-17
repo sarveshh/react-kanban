@@ -31,10 +31,10 @@ const Card = (props) => {
         }
       >
         <CardHeader>
-          <Typography variant="h5">{props.card.title}</Typography>
+          <Typography variant="h6">{props.card.title}</Typography>
         </CardHeader>
         <CardFooter>
-          <Typography variant="body1">{props.card.date}</Typography>
+          <Typography variant="h6">{props.card.date}</Typography>
         </CardFooter>
         <CardFooter>
           <IconButton
@@ -43,21 +43,21 @@ const Card = (props) => {
               props.shiftCardToPrevious(props.card?.id, props.boardId)
             }
           >
-            <FaBackward />
+            <FaBackward color="#777" />
           </IconButton>
           <IconButton onClick={() => setShowCardInfo(true)}>
-            <MdEdit />
+            <MdEdit color="#777" />
           </IconButton>
           <IconButton
             onClick={() => props.removeCard(props.card?.id, props.boardId)}
           >
-            <AiFillDelete />
+            <AiFillDelete color="#777" />
           </IconButton>
           <IconButton
             disabled={props.disableNextButton(props.boardId)}
             onClick={() => props.shiftCardToNext(props.card?.id, props.boardId)}
           >
-            <FaForward />
+            <FaForward color="#777" />
           </IconButton>
         </CardFooter>
       </CardContainer>

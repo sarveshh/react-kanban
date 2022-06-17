@@ -169,7 +169,7 @@ const LoggedInLayout = () => {
     <Box
       display="flex"
       justifyContent="space-between"
-      sx={{ display: { sm: "flex", xs: "block" }, width: "auto" }}
+      sx={{ display: { sm: "flex", xs: "block" }, width: "auto", flex: 4 }}
     >
       {boards.map((board) => (
         <Board

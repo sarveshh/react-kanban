@@ -3,11 +3,25 @@ import { Box } from "@mui/material";
 
 export const BoardContainer = styled(Box)(({ theme }) => ({
   height: "100%",
-  width: "100%",
-  border: "1px solid #e5e5e5",
-  backgroundColor: "#fff",
-  marginTop: "15px",
+  width: "95%",
+  flex: 1,
+  border: `1px solid ${theme.palette.borders.boardBorders}`,
+  backgroundColor: theme.palette.background.boardBg,
+  margin: "15px 5px",
   padding: "10px",
+  overflowY: "auto",
+  maxHeight: "85vh",
+  ["&::-webkit-scrollbar"]: {
+    width: "0.4em",
+  },
+  ["&::-webkit-scrollbar-track"]: {
+    "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.00)",
+  },
+  ["&::-webkit-scrollbar-thumb"]: {
+    backgroundColor: "rgba(0,0,0,.1)",
+    outline: "1px solid slategrey",
+    borderRadius: "5px",
+  },
 }));
 export const BoardHeader = styled(Box)(({ theme }) => ({
   height: "100%",

@@ -5,12 +5,13 @@ import Button from "@mui/material/Button";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
-import { BsPersonFill as AccountCircle } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutInitiate } from "../store/actions";
 import { useNavigate } from "react-router-dom";
+import { IconContext } from "react-icons/lib";
+import { MdLightMode, MdDarkMode } from "react-icons/md";
 
-export default function MenuAppBar() {
+export default function Navbar(props) {
   const [auth, setAuth] = useState(true);
   const navigate = useNavigate();
   const { currentUser } = useSelector((state) => state.user);
@@ -34,7 +35,7 @@ export default function MenuAppBar() {
   return (
     <AppBar position="static">
       <Toolbar>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+        <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
           Kanban
         </Typography>
         {auth && (
@@ -47,12 +48,20 @@ export default function MenuAppBar() {
             </Button>
             <IconButton
               size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
               color="inherit"
+              onClick={() => props.setIsLightMode(!props.isLightMode)}
             >
-              <AccountCircle />
+              <IconContext.Provider
+                value={{
+                  style: {
+                    width: "30px",
+                    height: "30px",
+                    color: props.isLightMode === true ? "black" : "white",
+                  },
+                }}
+              >
+                {props.isLightMode === true ? <MdDarkMode /> : <MdLightMode />}
+              </IconContext.Provider>
             </IconButton>
           </>
         )}
