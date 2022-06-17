@@ -5,6 +5,7 @@ import { AiFillDelete } from "react-icons/ai";
 import { FaBackward, FaForward } from "react-icons/fa";
 import { CardContainer, CardFooter, CardHeader } from "./CardStyles";
 import CardInfo from "./CardInfo/CardInfo";
+import { IconButton } from "@mui/material";
 
 const Card = (props) => {
   const [showCardInfo, setShowCardInfo] = React.useState(false);
@@ -28,7 +29,6 @@ const Card = (props) => {
         onDragEnter={() =>
           props.handleCardDragEnter(props.card?.id, props.boardId)
         }
-        onClick={() => setShowCardInfo(true)}
       >
         <CardHeader>
           <Typography variant="h5">{props.card.title}</Typography>
@@ -37,16 +37,28 @@ const Card = (props) => {
           <Typography variant="body1">{props.card.date}</Typography>
         </CardFooter>
         <CardFooter>
-          <FaBackward
-            onClick={() => props.shiftCard(props.card?.id, props.boardId)}
-          />
-          <MdEdit />
-          <AiFillDelete
-            onClick={() => props.removeCard(props.card?.id, props.boardId)}
-          />
-          <FaForward
-            onClick={() => props.shiftCardToNext(props.card?.id, props.boardId)}
-          />
+          <IconButton disabled={props.disableBackButton(props.boardId)}>
+            <FaBackward
+              onClick={() =>
+                props.shiftCardToPrevious(props.card?.id, props.boardId)
+              }
+            />
+          </IconButton>
+          <IconButton>
+            <MdEdit onClick={() => setShowCardInfo(true)} />
+          </IconButton>
+          <IconButton>
+            <AiFillDelete
+              onClick={() => props.removeCard(props.card?.id, props.boardId)}
+            />
+          </IconButton>
+          <IconButton disabled={props.disableNextButton(props.boardId)}>
+            <FaForward
+              onClick={() =>
+                props.shiftCardToNext(props.card?.id, props.boardId)
+              }
+            />
+          </IconButton>
         </CardFooter>
       </CardContainer>
     </>

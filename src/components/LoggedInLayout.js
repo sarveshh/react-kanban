@@ -116,7 +116,7 @@ const LoggedInLayout = () => {
   }, [boards]);
 
   //Shift card to previous block
-  const shiftCard = (cardId, boardId) => {
+  const shiftCardToPrevious = (cardId, boardId) => {
     const boardIndex = boards.findIndex((board) => board.id === boardId);
     if (boardIndex < 0) return;
 
@@ -149,6 +149,22 @@ const LoggedInLayout = () => {
     setBoards(newBoards);
   };
 
+  //Disable back button if user is on the first block
+  const disableBackButton = (boardId) => {
+    const boardIndex = boards.findIndex((board) => board.id === boardId);
+    if (boardIndex < 0) return;
+
+    return boardIndex === 0;
+  };
+
+  //Disable next button is user is on the last block
+  const disableNextButton = (boardId) => {
+    const boardIndex = boards.findIndex((board) => board.id === boardId);
+    if (boardIndex < 0) return;
+
+    return boardIndex === boards.length - 1;
+  };
+
   return (
     <Box display="flex" justifyContent="space-between">
       {boards.map((board) => (
@@ -160,8 +176,10 @@ const LoggedInLayout = () => {
           handleCardDragEnter={handleCardDragEnter}
           handleCardDragLeave={handleCardDragLeave}
           updateCard={updateCard}
-          shiftCard={shiftCard}
+          shiftCardToPrevious={shiftCardToPrevious}
           shiftCardToNext={shiftCardToNext}
+          disableBackButton={disableBackButton}
+          disableNextButton={disableNextButton}
         />
       ))}
     </Box>
