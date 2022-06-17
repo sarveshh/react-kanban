@@ -32,33 +32,31 @@ export default function MenuAppBar() {
   }, [currentUser]);
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Kanban
-          </Typography>
-          {auth && (
-            <>
-              <Button
-                sx={{ color: "white", mr: 3, border: "0.5px solid white" }}
-                onClick={handleAuth}
-              >
-                Logout
-              </Button>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-            </>
-          )}
-        </Toolbar>
-      </AppBar>
-    </Box>
+    <AppBar position="static">
+      <Toolbar>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          Kanban
+        </Typography>
+        {auth && (
+          <>
+            <Button
+              sx={{ color: "white", mr: 3, border: "0.5px solid white" }}
+              onClick={handleAuth}
+            >
+              Logout
+            </Button>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              color="inherit"
+            >
+              <AccountCircle />
+            </IconButton>
+          </>
+        )}
+      </Toolbar>
+    </AppBar>
   );
 }

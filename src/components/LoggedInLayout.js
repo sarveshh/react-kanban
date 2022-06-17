@@ -166,7 +166,11 @@ const LoggedInLayout = () => {
   };
 
   return (
-    <Box display="flex" justifyContent="space-between">
+    <Box
+      display="flex"
+      justifyContent="space-between"
+      sx={{ display: { sm: "flex", xs: "block" }, width: "auto" }}
+    >
       {boards.map((board) => (
         <Board
           key={board.id}

@@ -6,7 +6,7 @@ export const BoardContainer = styled(Box)(({ theme }) => ({
   width: "100%",
   border: "1px solid #e5e5e5",
   backgroundColor: "#fff",
-  margin: "15px",
+  marginTop: "15px",
   padding: "10px",
 }));
 export const BoardHeader = styled(Box)(({ theme }) => ({

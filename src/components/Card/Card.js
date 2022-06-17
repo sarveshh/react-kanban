@@ -37,27 +37,27 @@ const Card = (props) => {
           <Typography variant="body1">{props.card.date}</Typography>
         </CardFooter>
         <CardFooter>
-          <IconButton disabled={props.disableBackButton(props.boardId)}>
-            <FaBackward
-              onClick={() =>
-                props.shiftCardToPrevious(props.card?.id, props.boardId)
-              }
-            />
+          <IconButton
+            disabled={props.disableBackButton(props.boardId)}
+            onClick={() =>
+              props.shiftCardToPrevious(props.card?.id, props.boardId)
+            }
+          >
+            <FaBackward />
           </IconButton>
-          <IconButton>
-            <MdEdit onClick={() => setShowCardInfo(true)} />
+          <IconButton onClick={() => setShowCardInfo(true)}>
+            <MdEdit />
           </IconButton>
-          <IconButton>
-            <AiFillDelete
-              onClick={() => props.removeCard(props.card?.id, props.boardId)}
-            />
+          <IconButton
+            onClick={() => props.removeCard(props.card?.id, props.boardId)}
+          >
+            <AiFillDelete />
           </IconButton>
-          <IconButton disabled={props.disableNextButton(props.boardId)}>
-            <FaForward
-              onClick={() =>
-                props.shiftCardToNext(props.card?.id, props.boardId)
-              }
-            />
+          <IconButton
+            disabled={props.disableNextButton(props.boardId)}
+            onClick={() => props.shiftCardToNext(props.card?.id, props.boardId)}
+          >
+            <FaForward />
           </IconButton>
         </CardFooter>
       </CardContainer>

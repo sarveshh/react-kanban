@@ -41,9 +41,6 @@ export default function SignIn() {
     dispatch(loginInitiate(email, password));
     setState({ email: "", password: "" });
   };
-  const captchaOnChange = (value) => {
-    console.log("Captcha value:", value);
-  };
 
   const [state, setState] = useState({
     email: "",
@@ -99,7 +96,6 @@ export default function SignIn() {
             />
             <ReCAPTCHA
               sitekey="6LdXynggAAAAAFivq1gC112-n1E6TedfKkEHW0ov"
-              onChange={captchaOnChange}
               size="normal"
               theme="light"
             />
