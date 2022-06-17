@@ -5,7 +5,7 @@ import { AiFillDelete } from "react-icons/ai";
 import { FaBackward, FaForward } from "react-icons/fa";
 import { CardContainer, CardFooter, CardHeader } from "./CardStyles";
 import CardInfo from "./CardInfo/CardInfo";
-import { IconButton } from "@mui/material";
+import { IconButton, Checkbox, Box, Tooltip } from "@mui/material";
 
 const Card = (props) => {
   const [showCardInfo, setShowCardInfo] = React.useState(false);
@@ -30,9 +30,17 @@ const Card = (props) => {
           props.handleCardDragEnter(props.card?.id, props.boardId)
         }
       >
-        <CardHeader>
-          <Typography variant="h6">{props.card.title}</Typography>
-        </CardHeader>
+        <Box display="flex">
+          <Tooltip title="Mark as Completed">
+            <Checkbox
+              sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
+              checked={props.card?.completed}
+            />
+          </Tooltip>
+          <CardHeader>
+            <Typography variant="h6">{props.card.title}</Typography>
+          </CardHeader>
+        </Box>
         <CardFooter>
           <Typography variant="h6">{props.card.date}</Typography>
         </CardFooter>

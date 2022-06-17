@@ -10,7 +10,12 @@ import DialogTitle from "@mui/material/DialogTitle";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 
-import { IconButton, Tooltip } from "@mui/material";
+import {
+  IconButton,
+  Tooltip,
+  Checkbox,
+  DialogContentText,
+} from "@mui/material";
 import { customIcons } from "../../../data";
 
 export default function CardInfo(props) {
@@ -38,6 +43,15 @@ export default function CardInfo(props) {
           aria-labelledby="responsive-dialog-title"
         >
           <DialogTitle id="responsive-dialog-title">{"Edit Task"}</DialogTitle>
+          <Box display="flex" alignItems="center" justifyContent="center">
+            <Checkbox
+              sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
+              onChange={() =>
+                setValues({ ...values, completed: !values.completed })
+              }
+            />
+            <Typography variant="body1">Mark as Completed</Typography>
+          </Box>
           <DialogContent>
             <Box display="flex" flexDirection="column">
               <TextField

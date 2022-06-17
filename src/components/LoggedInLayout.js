@@ -44,6 +44,7 @@ const LoggedInLayout = () => {
       date: date,
       description: "",
       priority: priority,
+      completed: false,
     };
     const index = boards.findIndex((board) => board.id === boardId);
     if (index < 0) return;
