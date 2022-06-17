@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import { useDispatch, useSelector } from "react-redux";
-import { logoutInitiate } from "../store/actions";
+import { logoutInitiate } from "../../store/actions";
 import { useNavigate } from "react-router-dom";
 import { IconContext } from "react-icons/lib";
 import { MdLightMode, MdDarkMode } from "react-icons/md";

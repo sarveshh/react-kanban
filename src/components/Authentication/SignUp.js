@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
+
+//Mui imports
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import { AiFillLock } from "react-icons/ai";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+
 import { useNavigate, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { registerInitiate } from "../store/actions";
+import { registerInitiate } from "../../store/actions";
 import { upload } from "../../firebase";
 
 const theme = createTheme();

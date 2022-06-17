@@ -1,20 +1,25 @@
 import React, { useEffect, useState } from "react";
+
+//Mui imports
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import { AiFillLock } from "react-icons/ai";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useNavigate, Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { loginInitiate, googleSignInInitiate } from "../store/actions";
-import ReCAPTCHA from "react-google-recaptcha";
+
+//Icon imports
+import { AiFillLock } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { IconContext } from "react-icons/lib";
+
+import { useNavigate, Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { loginInitiate, googleSignInInitiate } from "../../store/actions";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const theme = createTheme();
 
