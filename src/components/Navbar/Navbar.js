@@ -6,7 +6,6 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import { BsPersonFill as AccountCircle } from "react-icons/bs";
-import { IoMdLogIn } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutInitiate } from "../store/actions";
 import { useNavigate } from "react-router-dom";

@@ -1,9 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
 
+//Dependencies
 import { Provider } from "react-redux";
+
+//Components or Files
 import { store } from "./components/store/store";
+import App from "./App";
 
 //MUI Imports
 import GlobalStyles from "@mui/material/GlobalStyles";

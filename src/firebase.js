@@ -2,6 +2,7 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import { ref, uploadBytes, getStorage } from "firebase/storage";
 
+//App configs
 const app = firebase.initializeApp({
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -16,6 +17,7 @@ const auth = app.auth();
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 export { auth, googleAuthProvider };
 
+//Profile Picture Upload  to Firebase Storage
 export async function upload(file, currentUser, setLoading) {
   if (currentUser === null) {
     currentUser = Math.random();

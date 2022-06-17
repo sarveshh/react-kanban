@@ -9,13 +9,9 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
-import {
-  FcHighPriority,
-  FcLowPriority,
-  FcMediumPriority,
-} from "react-icons/fc";
-import { BsFillDiamondFill } from "react-icons/bs";
+
 import { IconButton, Tooltip } from "@mui/material";
+import { customIcons } from "../../../data";
 
 export default function CardInfo(props) {
   const [values, setValues] = useState({ ...props.card });
@@ -31,33 +27,6 @@ export default function CardInfo(props) {
     let priorityColor = customIcons.find((item) => item.id === id).color;
     setValues({ ...values, priority: priorityColor });
   };
-
-  const customIcons = [
-    {
-      id: 1,
-      icon: <FcHighPriority />,
-      label: "High Priority",
-      color: "red",
-    },
-    {
-      id: 2,
-      icon: <FcMediumPriority />,
-      label: "Medium Priority",
-      color: "yellow",
-    },
-    {
-      id: 3,
-      icon: <FcLowPriority />,
-      label: "Low Priority",
-      color: "green",
-    },
-    {
-      id: 4,
-      icon: <BsFillDiamondFill />,
-      label: "No Priority",
-      color: "whitesmoke",
-    },
-  ];
 
   return (
     <div>
