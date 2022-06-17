@@ -9,130 +9,22 @@ const LoggedInLayout = () => {
       {
         id: 1,
         title: "Backlog",
-        cards: [
-          {
-            id: 1,
-            title: "Card 1",
-            description: "This is a card",
-            tasks: [],
-            tags: [
-              {
-                text: "Frontend",
-                color: "default",
-              },
-            ],
-            date: "2020-01-01",
-          },
-          {
-            id: 2,
-            title: "Card 2",
-            description: "This is a card 2",
-            tasks: [],
-            tags: [
-              {
-                text: "Backend",
-                color: "primary",
-              },
-            ],
-            date: "2020-01-01",
-          },
-        ],
+        cards: [],
       },
       {
         id: 2,
         title: "To Do",
-        cards: [
-          {
-            id: 3,
-            title: "Card 1",
-            description: "This is a card",
-            tasks: [],
-            tags: [
-              {
-                text: "Frontend",
-                color: "default",
-              },
-            ],
-            date: "2020-01-01",
-          },
-          {
-            id: 4,
-            title: "Card 2",
-            description: "This is a card 2",
-            tasks: [],
-            tags: [
-              {
-                text: "Backend",
-                color: "primary",
-              },
-            ],
-            date: "2020-01-01",
-          },
-        ],
+        cards: [],
       },
       {
         id: 3,
         title: "Ongoing",
-        cards: [
-          {
-            id: 5,
-            title: "Card 1",
-            description: "This is a card",
-            tasks: [],
-            tags: [
-              {
-                text: "Frontend",
-                color: "default",
-              },
-            ],
-            date: "2020-01-01",
-          },
-          {
-            id: 6,
-            title: "Card 2",
-            description: "This is a card 2",
-            tasks: [],
-            tags: [
-              {
-                text: "Backend",
-                color: "primary",
-              },
-            ],
-            date: "2020-01-01",
-          },
-        ],
+        cards: [],
       },
       {
         id: 4,
         title: "Done",
-        cards: [
-          {
-            id: 5,
-            title: "Card 1",
-            description: "This is a card",
-            tasks: [],
-            tags: [
-              {
-                text: "Frontend",
-                color: "default",
-              },
-            ],
-            date: "2020-01-01",
-          },
-          {
-            id: 6,
-            title: "Card 2",
-            description: "This is a card 2",
-            tasks: [],
-            tags: [
-              {
-                text: "Backend",
-                color: "primary",
-              },
-            ],
-            date: "2020-01-01",
-          },
-        ],
+        cards: [],
       },
     ]
   );
@@ -141,14 +33,15 @@ const LoggedInLayout = () => {
     boardId: "",
   });
 
-  const addCard = (title, boardId) => {
+  const addCard = (title, date, priority, boardId) => {
     const card = {
       id: boards[0].cards.length + Math.random(),
       title,
       tags: [],
       tasks: [],
-      date: "",
+      date: date,
       description: "",
+      priority: priority,
     };
     const index = boards.findIndex((board) => board.id === boardId);
     if (index < 0) return;

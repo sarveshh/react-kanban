@@ -1,38 +1,133 @@
 import React, { useState } from "react";
-import { Box, Typography, Button } from "@mui/material";
-import { IoIosClose } from "react-icons/io";
+import {
+  Box,
+  Typography,
+  Button,
+  TextField,
+  IconButton,
+  Tooltip,
+} from "@mui/material";
+
+import {
+  FcHighPriority,
+  FcLowPriority,
+  FcMediumPriority,
+} from "react-icons/fc";
+import { BsFillDiamondFill } from "react-icons/bs";
+
+const customIcons = [
+  {
+    id: 1,
+    icon: <FcHighPriority />,
+    label: "High Priority",
+    color: "red",
+  },
+  {
+    id: 2,
+    icon: <FcMediumPriority />,
+    label: "Medium Priority",
+    color: "yellow",
+  },
+  {
+    id: 3,
+    icon: <FcLowPriority />,
+    label: "Low Priority",
+    color: "green",
+  },
+  {
+    id: 4,
+    icon: <BsFillDiamondFill />,
+    label: "No Priority",
+    color: "grey",
+  },
+];
 
 const AddCard = (props) => {
   const [show, setShow] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const [date, setDate] = useState(null);
+  const [priority, setPriority] = useState(4);
+
+  const testClick = (id) => {
+    let priorityColor = customIcons.find((item) => item.id === id).color;
+    setPriority(priorityColor);
+  };
+
   return (
-    <Box>
+    <Box sx={{ mt: 2 }}>
       {show ? (
         <form
           onSubmit={(event) => {
             event.preventDefault();
             if (props.onSubmit) {
-              props.onSubmit(inputValue);
+              props.onSubmit(inputValue, date, priority);
             }
             setShow(false);
             setInputValue("");
           }}
         >
-          <input
+          <TextField
             type="text"
+            variant="outlined"
+            label="Add Task"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
-            placeholder="Add Task"
+            fullWidth
           />
-          <Box className="footer">
-            <Button type="submit">Add card</Button>
-            <IoIosClose onClick={() => setShow(false)} />
+          <Box display="flex" alignItems="center" sx={{ mb: 2, mt: 2 }}>
+            <Typography variant="subtitle1" sx={{ mr: 3 }}>
+              Deadline
+            </Typography>
+            <input
+              type="date"
+              style={{
+                outline: "none",
+                border: "1px solid black",
+                borderradius: "3px",
+                padding: "10px",
+                fontsize: "1.2rem",
+                marginbottom: "10px",
+              }}
+              onChange={(e) =>
+                setDate(new Date(e.target.value).toISOString().substr(0, 10))
+              }
+            />
+          </Box>
+          <Box
+            display="flex"
+            fullWidth
+            alignItems="center"
+            sx={{ mb: 2, mt: 2 }}
+          >
+            <Typography variant="subtitle1" sx={{ mr: 3 }}>
+              Priority
+            </Typography>
+            {customIcons.map((icon) => (
+              <Box key={icon.id} onClick={() => testClick(icon.id)}>
+                <Tooltip title={icon.label}>
+                  <IconButton>{icon.icon}</IconButton>
+                </Tooltip>
+              </Box>
+            ))}
+          </Box>
+          <Box display="flex" fullWidth>
+            <Button type="submit" variant="contained" fullWidth>
+              Add card
+            </Button>
+            <Button variant="outlined" onClick={() => setShow(false)} fullWidth>
+              Cancel
+            </Button>
           </Box>
         </form>
       ) : (
-        <Typography variant="h5" onClick={() => setShow(true)}>
-          Add card
-        </Typography>
+        <Button
+          variant="contained"
+          fullWidth
+          sx={{ mt: 1 }}
+          onClick={() => setShow(true)}
+        >
+          Add task
+        </Button>
       )}
     </Box>
   );

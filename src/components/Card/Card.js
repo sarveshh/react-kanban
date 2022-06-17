@@ -21,6 +21,7 @@ const Card = (props) => {
         />
       )}
       <CardContainer
+        priority={props.card.priority}
         draggable
         onDragEnd={() =>
           props.handleCardDragLeave(props.card?.id, props.boardId)

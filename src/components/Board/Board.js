@@ -1,6 +1,5 @@
 import React from "react";
 import { Typography } from "@mui/material";
-import { MdEdit } from "react-icons/md";
 import Card from "../Card/Card";
 import AddCard from "../AddCard/AddCard";
 import { BoardContainer, BoardHeader, AllCardsContainer } from "./BoardStyles";
@@ -9,11 +8,8 @@ const Board = (props) => {
   return (
     <BoardContainer>
       <BoardHeader>
-        <Typography variant="h5">
-          {props.board?.title}
-          {props.board?.cards?.length}
-        </Typography>
-        <MdEdit />
+        <Typography variant="h5">{props.board?.title}</Typography>
+        <Typography variant="h5">{props.board?.cards?.length}</Typography>
       </BoardHeader>
       <AllCardsContainer>
         {props.board?.cards?.map((card) => (
@@ -28,7 +24,11 @@ const Board = (props) => {
           />
         ))}
       </AllCardsContainer>
-      <AddCard onSubmit={(value) => props.addCard(value, props.board?.id)} />
+      <AddCard
+        onSubmit={(value, date, priority) =>
+          props.addCard(value, date, priority, props.board?.id)
+        }
+      />
     </BoardContainer>
   );
 };
