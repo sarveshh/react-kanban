@@ -53,6 +53,20 @@ const LoggedInLayout = () => {
     setBoards(newBoards);
   };
 
+  //Mark card as completed
+  const markCardAsCompleted = (cardId, boardId) => {
+    const index = boards.findIndex((board) => board.id === boardId);
+    if (index < 0) return;
+    const newBoards = [...boards];
+    newBoards[index].cards = newBoards[index].cards.map((card) => {
+      if (card.id === cardId) {
+        card.completed = true;
+      }
+      return card;
+    });
+    setBoards(newBoards);
+  };
+
   const removeCard = (cardId, boardId) => {
     const boardIndex = boards.findIndex((board) => board.id === boardId);
     if (boardIndex < 0) return;
@@ -185,6 +199,7 @@ const LoggedInLayout = () => {
           shiftCardToNext={shiftCardToNext}
           disableBackButton={disableBackButton}
           disableNextButton={disableNextButton}
+          markCardAsCompleted={markCardAsCompleted}
         />
       ))}
     </Box>

@@ -35,6 +35,9 @@ const Card = (props) => {
             <Checkbox
               sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
               checked={props.card?.completed}
+              onChange={() =>
+                props.markCardAsCompleted(props.card?.id, props.boardId)
+              }
             />
           </Tooltip>
           <CardHeader>

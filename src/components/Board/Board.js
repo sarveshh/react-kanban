@@ -11,7 +11,9 @@ const Board = (props) => {
     <BoardContainer>
       <BoardHeader>
         <Typography variant="h5">{props.board?.title}</Typography>
-        <Typography variant="h5">{props.board?.cards?.length}</Typography>
+        <Typography variant="h5">
+          {props.board.cards.filter((card) => !card.completed).length}
+        </Typography>
       </BoardHeader>
       <AllCardsContainer>
         {props.board.cards
@@ -29,6 +31,7 @@ const Board = (props) => {
               shiftCardToNext={props.shiftCardToNext}
               disableBackButton={props.disableBackButton}
               disableNextButton={props.disableNextButton}
+              markCardAsCompleted={props.markCardAsCompleted}
             />
           ))}
       </AllCardsContainer>
@@ -43,7 +46,10 @@ const Board = (props) => {
           checked={showCompletedTasks}
           onChange={() => setShowCompletedTasks(!showCompletedTasks)}
         />
-        <Typography variant="h6">Show Completed tasks</Typography>
+        <Typography variant="body1">Show Completed tasks</Typography>
+        <Typography variant="subtitle1" sx={{ ml: 2 }}>
+          {props.board.cards.filter((card) => card.completed).length}
+        </Typography>
       </Box>
 
       {showCompletedTasks === true ? (
