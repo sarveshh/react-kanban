@@ -38,7 +38,7 @@ const customIcons = [
     id: 4,
     icon: <BsFillDiamondFill />,
     label: "No Priority",
-    color: "grey",
+    color: "whitesmoke",
   },
 ];
 

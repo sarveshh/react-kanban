@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 //Components
 import Navbar from "./components/Navbar/Navbar";
@@ -17,6 +17,7 @@ import { setUser } from "./components/store/actions";
 
 function App() {
   const dispatch = useDispatch();
+  const [themeValue, setThemeValue] = useState("light");
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -30,6 +31,9 @@ function App() {
   const theme = createTheme({
     status: {
       danger: "#e53e3e",
+    },
+    palette: {
+      mode: themeValue,
     },
   });
 
