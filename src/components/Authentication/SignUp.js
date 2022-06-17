@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -11,6 +11,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { registerInitiate } from "../store/actions";
+import { upload } from "../../firebase";
 
 const theme = createTheme();
 
@@ -18,11 +19,32 @@ export default function SignUp() {
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
   const navigate = useNavigate();
+  const [photoURL, setPhotoURL] = useState("");
+
   useEffect(() => {
     if (currentUser) {
       navigate("/");
     }
-  }, [currentUser, navigate]);
+  }, [currentUser]);
+
+  useEffect(() => {
+    if (currentUser?.photoURL) {
+      setPhotoURL(currentUser.photoURL);
+    }
+  }, []);
+
+  const [photo, setPhoto] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const handleImageChange = (e) => {
+    if (e.target.files[0]) {
+      setPhoto(e.target.files[0]);
+    }
+  };
+
+  const handleUploadClick = () => {
+    upload(photo, currentUser, setLoading);
+  };
 
   const [state, setState] = React.useState({
     name: "",
@@ -61,9 +83,6 @@ export default function SignUp() {
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <AiFillLock />
-          </Avatar>
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
@@ -136,6 +155,27 @@ export default function SignUp() {
                   value={contactNumber}
                 />
               </Grid>
+              <Box
+                display="flex"
+                width="100%"
+                justifyContent="center"
+                sx={{ mt: 2 }}
+              >
+                <Button component="label">
+                  Profile image
+                  <input type="file" hidden onChange={handleImageChange} />
+                </Button>
+                <Avatar alt="Remy Sharp" src={photoURL} />
+                <Button
+                  variant="outlined"
+                  component="label"
+                  onClick={handleUploadClick}
+                  disabled={loading || !photo}
+                  sx={{ ml: 2 }}
+                >
+                  Upload File
+                </Button>
+              </Box>
             </Grid>
             <Button
               type="submit"

@@ -30,7 +30,7 @@ export default function MenuAppBar() {
     } else {
       setAuth(true);
     }
-  }, [currentUser, navigate]);
+  }, [currentUser]);
 
   return (
     <Box sx={{ flexGrow: 1 }}>

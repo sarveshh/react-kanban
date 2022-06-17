@@ -12,6 +12,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginInitiate, googleSignInInitiate } from "../store/actions";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const theme = createTheme();
 
@@ -39,6 +40,9 @@ export default function SignIn() {
     }
     dispatch(loginInitiate(email, password));
     setState({ email: "", password: "" });
+  };
+  const captchaOnChange = (value) => {
+    console.log("Captcha value:", value);
   };
 
   const [state, setState] = useState({
@@ -93,7 +97,12 @@ export default function SignIn() {
               autoComplete="current-password"
               onChange={handleChange}
             />
-
+            <ReCAPTCHA
+              sitekey="6LdXynggAAAAAFivq1gC112-n1E6TedfKkEHW0ov"
+              onChange={captchaOnChange}
+              size="normal"
+              theme="light"
+            />
             <Button
               type="submit"
               fullWidth
