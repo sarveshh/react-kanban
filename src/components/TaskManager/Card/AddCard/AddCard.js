@@ -8,7 +8,7 @@ import {
   Tooltip,
 } from "@mui/material";
 
-import { customIcons } from "../../../data";
+import { customIcons } from "../../../../data";
 
 const AddCard = (props) => {
   const [show, setShow] = useState(false);

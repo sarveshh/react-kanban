@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
 
 //Components or Files
-import Navbar from "./components/Navbar/Navbar";
 import SignUp from "./components/Authentication/SignUp";
 import SignIn from "./components/Authentication/SignIn";
-import LoggedInLayout from "./components/LoggedInLayout";
 import { auth } from "./firebase";
 import { setUser } from "./store/slices/authSlice";
+import Dashboard from "./components/Dashboard/Dashboard";
 
 //Mui Imports
 import { CssBaseline } from "@mui/material";
@@ -60,17 +59,16 @@ function App() {
 
   return (
     <div>
-      <BrowserRouter>
-        <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
           <CssBaseline />
-          <Navbar />
           <Routes>
             <Route path="/signup" element={<SignUp />} />
             <Route path="/signin" element={<SignIn />} />
-            <Route exact path="/" element={<LoggedInLayout />} />
+            <Route exact path="/app" element={<Dashboard />} />
           </Routes>
-        </ThemeProvider>
-      </BrowserRouter>
+        </BrowserRouter>
+      </ThemeProvider>
     </div>
   );
 }

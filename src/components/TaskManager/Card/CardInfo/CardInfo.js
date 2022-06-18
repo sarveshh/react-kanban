@@ -11,7 +11,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 
 import { IconButton, Tooltip, Checkbox } from "@mui/material";
-import { customIcons } from "../../../data";
+import { customIcons } from "../../../../data";
 
 export default function CardInfo(props) {
   const [values, setValues] = useState({ ...props.card });
