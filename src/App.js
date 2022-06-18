@@ -61,11 +61,8 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Routes>
-          <Route
-            path="/https://sarveshh.github.io/sarvesh-patil-15062022"
-            element={<SignUp />}
-          />
-          <Route path="/sarvesh-patil-15062022" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/" element={<SignIn />} />
           <Route exact path="/app" element={<AppLayout />} />
           <Route path="*" element={<Page404 />} />
         </Routes>
