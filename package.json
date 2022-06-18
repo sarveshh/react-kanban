@@ -1,6 +1,7 @@
 {
   "name": "kanban-neosoft",
   "version": "0.1.0",
+  "homepage": "https://www.sarveshh.github.io/kanban-neosoft",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.9.3",
@@ -18,11 +19,7 @@
     "react-redux": "^8.0.2",
     "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
-    "react-scripts": "5.0.1",
-    "recharts": "^2.1.10",
-    "redux": "^4.2.0",
-    "redux-logger": "^3.0.6",
-    "web-vitals": "^2.1.4"
+    "react-scripts": "5.0.1"
   },
   "scripts": {
     "predeploy": "npm run build",
