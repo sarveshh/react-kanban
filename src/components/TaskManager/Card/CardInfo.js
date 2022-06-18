@@ -35,86 +35,80 @@ export default function CardInfo(props) {
   };
 
   return (
-    <div>
-      <div>
-        <Dialog
-          open={props.open}
-          onClose={props.onClose}
-          aria-labelledby="responsive-dialog-title"
-        >
-          <DialogTitle id="responsive-dialog-title">{"Edit Task"}</DialogTitle>
-          <Box display="flex" alignItems="center" justifyContent="center">
-            <Checkbox
-              sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
-              checked={values.completed}
-              onChange={() =>
-                setValues({ ...values, completed: !values.completed })
+    <Dialog
+      open={props.open}
+      onClose={props.onClose}
+      aria-labelledby="responsive-dialog-title"
+    >
+      <Typography variant="h5" sx={{ m: 3 }}>
+        Edit Task
+      </Typography>
+      <Box display="flex" alignItems="center" justifyContent="center">
+        <Checkbox
+          sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
+          checked={values.completed}
+          onChange={() =>
+            setValues({ ...values, completed: !values.completed })
+          }
+        />
+        <Typography variant="body1">Mark as Completed</Typography>
+      </Box>
+      <DialogContent>
+        <Box display="flex" flexDirection="column">
+          <TextField
+            defaultValue={values.title}
+            id="outlined-basic"
+            label="Title"
+            variant="outlined"
+            onChange={(e) => setValues({ ...values, title: e.target.value })}
+            sx={{ mt: 2 }}
+          />
+          <Box display="flex" alignItems="center" sx={{ mt: 2 }}>
+            <Typography variant="subtitle1" sx={{ mr: 3 }}>
+              Deadline
+            </Typography>
+            <input
+              type="date"
+              style={{
+                outline: "none",
+                border: "1px solid black",
+                borderradius: "3px",
+                padding: "10px",
+                fontsize: "1.2rem",
+                marginbottom: "10px",
+              }}
+              defaultValue={
+                values.date
+                  ? new Date(values.date).toISOString().substring(0, 10)
+                  : ""
               }
+              onChange={(e) => setValues({ ...values, date: e.target.value })}
             />
-            <Typography variant="body1">Mark as Completed</Typography>
           </Box>
-          <DialogContent>
-            <Box display="flex" flexDirection="column">
-              <TextField
-                defaultValue={values.title}
-                id="outlined-basic"
-                label="Title"
-                variant="outlined"
-                onChange={(e) =>
-                  setValues({ ...values, title: e.target.value })
-                }
-                sx={{ mt: 2 }}
-              />
-              <Box display="flex" alignItems="center" sx={{ mt: 2 }}>
-                <Typography variant="subtitle1" sx={{ mr: 3 }}>
-                  Deadline
-                </Typography>
-                <input
-                  type="date"
-                  style={{
-                    outline: "none",
-                    border: "1px solid black",
-                    borderradius: "3px",
-                    padding: "10px",
-                    fontsize: "1.2rem",
-                    marginbottom: "10px",
-                  }}
-                  defaultValue={
-                    values.date
-                      ? new Date(values.date).toISOString().substring(0, 10)
-                      : ""
-                  }
-                  onChange={(e) =>
-                    setValues({ ...values, date: e.target.value })
-                  }
-                />
+          <Box
+            display="flex"
+            fullWidth
+            alignItems="center"
+            sx={{ mb: 2, mt: 2 }}
+          >
+            <Typography variant="subtitle1" sx={{ mr: 3 }}>
+              Priority
+            </Typography>
+            {customIcons.map((icon) => (
+              <Box key={icon.id} onClick={() => setPriority(icon.id)}>
+                <Tooltip title={icon.label}>
+                  <IconButton>{icon.icon}</IconButton>
+                </Tooltip>
               </Box>
-              <Box
-                display="flex"
-                fullWidth
-                alignItems="center"
-                sx={{ mb: 2, mt: 2 }}
-              >
-                <Typography variant="subtitle1" sx={{ mr: 3 }}>
-                  Priority
-                </Typography>
-                {customIcons.map((icon) => (
-                  <Box key={icon.id} onClick={() => setPriority(icon.id)}>
-                    <Tooltip title={icon.label}>
-                      <IconButton>{icon.icon}</IconButton>
-                    </Tooltip>
-                  </Box>
-                ))}
-              </Box>
-            </Box>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={props.onClose} autoFocus>
-              Close
-            </Button>
-          </DialogActions>
-        </Dialog>
-      </div>
-    </div>
+            ))}
+          </Box>
+        </Box>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={props.onClose} autoFocus>
+          Close
+        </Button>
+      </DialogActions>
+    </Dialog>
   );
 }
