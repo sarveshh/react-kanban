@@ -3,7 +3,6 @@ import { Typography, Box, Checkbox } from "@mui/material";
 import Card from "../Card/Card";
 import AddCard from "../Card/AddCard/AddCard";
 import { BoardContainer, BoardHeader, AllCardsContainer } from "./BoardStyles";
-import { MdOutlineSignalWifiStatusbarNull } from "react-icons/md";
 
 const Board = (props) => {
   const [showCompletedTasks, setShowCompletedTasks] = React.useState(false);

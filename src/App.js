@@ -66,7 +66,7 @@ function App() {
           <Routes>
             <Route path="/signup" element={<SignUp />} />
             <Route path="/signin" element={<SignIn />} />
-            <Route exact path="/app/*" element={<Dashboard />} />
+            <Route exact path="/" element={<Dashboard />} />
             <Route path="*" element={<Page404 />} />
           </Routes>
         </BrowserRouter>
