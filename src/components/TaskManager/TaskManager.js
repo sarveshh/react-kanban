@@ -4,8 +4,6 @@ import Board from "./Board/Board";
 import { Box } from "@mui/material";
 
 const TaskManager = () => {
-  const [openTrash, setOpenTrash] = React.useState(false);
-
   const [boards, setBoards] = useState(
     JSON.parse(localStorage.getItem("kanban")) || [
       {
@@ -39,10 +37,7 @@ const TaskManager = () => {
     const card = {
       id: boards[0].cards.length + Math.random(),
       title,
-      tags: [],
-      tasks: [],
       date: date,
-      description: "",
       priority: priority,
       completed: false,
     };
@@ -83,7 +78,6 @@ const TaskManager = () => {
 
   const handleCardDragEnter = (cardId, boardId) => {
     setTarget({ cardId, boardId });
-    setOpenTrash(!openTrash);
   };
 
   const handleCardDragLeave = (cardId, boardId) => {
@@ -109,7 +103,6 @@ const TaskManager = () => {
     tempBoards[sourceBoardIndex].cards.splice(sourceCardIndex, 1);
     tempBoards[targetBoardIndex].cards.splice(targetCardIndex, 0, tempCard);
     setBoards(tempBoards);
-    setOpenTrash(false);
   };
 
   const updateCard = (cardId, boardId, card) => {
