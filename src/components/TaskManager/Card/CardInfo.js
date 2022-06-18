@@ -6,8 +6,6 @@ import Typography from "@mui/material/Typography";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogTitle from "@mui/material/DialogTitle";
-import useMediaQuery from "@mui/material/useMediaQuery";
 
 import { IconButton, Tooltip, Checkbox } from "@mui/material";
 import { customIcons } from "../../../data";

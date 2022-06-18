@@ -52,9 +52,6 @@ function App() {
       h6: {
         color: isLightMode ? "black" : "black",
       },
-      h6: {
-        color: isLightMode ? "black" : "black",
-      },
     },
   });
 
