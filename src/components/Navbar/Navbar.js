@@ -5,15 +5,17 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import { useDispatch, useSelector } from "react-redux";
-import { logoutInitiate } from "../../store/actions";
+import { logoutInitiate } from "../../store/authSlice";
 import { useNavigate } from "react-router-dom";
 import { IconContext } from "react-icons/lib";
 import { MdLightMode, MdDarkMode } from "react-icons/md";
+import { nightModeActions } from "../../store/nightModeSlice";
 
-export default function Navbar(props) {
+export default function Navbar() {
+  const isLightMode = useSelector((state) => state.nightMode.isLightMode);
   const [auth, setAuth] = useState(true);
   const navigate = useNavigate();
-  const { currentUser } = useSelector((state) => state.user);
+  const currentUser = useSelector((state) => state.auth.currentUser);
   const dispatch = useDispatch();
 
   const handleAuth = () => {
@@ -48,18 +50,18 @@ export default function Navbar(props) {
             <IconButton
               size="large"
               color="inherit"
-              onClick={() => props.setIsLightMode(!props.isLightMode)}
+              onClick={() => dispatch(nightModeActions.toggleNightMode())}
             >
               <IconContext.Provider
                 value={{
                   style: {
                     width: "30px",
                     height: "30px",
-                    color: props.isLightMode === true ? "black" : "white",
+                    color: isLightMode === true ? "black" : "white",
                   },
                 }}
               >
-                {props.isLightMode === true ? <MdDarkMode /> : <MdLightMode />}
+                {isLightMode === true ? <MdDarkMode /> : <MdLightMode />}
               </IconContext.Provider>
             </IconButton>
           </>

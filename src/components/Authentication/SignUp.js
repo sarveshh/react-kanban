@@ -12,14 +12,14 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import { useNavigate, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { registerInitiate } from "../../store/actions";
+import { registerInitiate } from "../../store/authSlice";
 import { upload } from "../../firebase";
 
 const theme = createTheme();
 
 export default function SignUp() {
   const dispatch = useDispatch();
-  const { currentUser } = useSelector((state) => state.user);
+  const currentUser = useSelector((state) => state.auth.currentUser);
   const navigate = useNavigate();
   const [photoURL, setPhotoURL] = useState("");
 
@@ -59,7 +59,7 @@ export default function SignUp() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(registerInitiate(name, username, email, password, contactNumber));
+    dispatch(registerInitiate(name, email, password));
     setState({
       name: "",
       username: "",

@@ -5,7 +5,7 @@ import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 
 //Components or Files
-import { store } from "./store/store";
+import store from "./store/index";
 import App from "./App";
 
 //MUI Imports

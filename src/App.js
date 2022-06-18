@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 //Components or Files
 import Navbar from "./components/Navbar/Navbar";
@@ -6,7 +6,7 @@ import SignUp from "./components/Authentication/SignUp";
 import SignIn from "./components/Authentication/SignIn";
 import LoggedInLayout from "./components/LoggedInLayout";
 import { auth } from "./firebase";
-import { setUser } from "./store/actions";
+import { setUser } from "./store/authSlice";
 
 //Mui Imports
 import { CssBaseline } from "@mui/material";
@@ -14,11 +14,11 @@ import { createTheme, ThemeProvider } from "@mui/material";
 
 //Dependency Imports
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function App() {
+  const isLightMode = useSelector((state) => state.nightMode.isLightMode);
   const dispatch = useDispatch();
-  const [isLightMode, setIsLightMode] = useState(true);
 
   useEffect(() => {
     //Setting auth state app wide
@@ -63,7 +63,7 @@ function App() {
       <BrowserRouter>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <Navbar isLightMode={isLightMode} setIsLightMode={setIsLightMode} />
+          <Navbar />
           <Routes>
             <Route path="/signup" element={<SignUp />} />
             <Route path="/signin" element={<SignIn />} />

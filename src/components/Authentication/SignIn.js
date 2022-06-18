@@ -18,14 +18,14 @@ import { IconContext } from "react-icons/lib";
 
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { loginInitiate, googleSignInInitiate } from "../../store/actions";
 import ReCAPTCHA from "react-google-recaptcha";
+import { googleSignInInitiate, loginInitiate } from "../../store/authSlice";
 
 const theme = createTheme();
 
 export default function SignIn() {
   const dispatch = useDispatch();
-  const { currentUser } = useSelector((state) => state.user);
+  const currentUser = useSelector((state) => state.auth.currentUser);
   const navigate = useNavigate();
 
   useEffect(() => {
