@@ -19,7 +19,10 @@ import { IconContext } from "react-icons/lib";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import ReCAPTCHA from "react-google-recaptcha";
-import { googleSignInInitiate, loginInitiate } from "../../store/authSlice";
+import {
+  googleSignInInitiate,
+  loginInitiate,
+} from "../../store/slices/authSlice";
 
 const theme = createTheme();
 

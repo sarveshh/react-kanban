@@ -12,7 +12,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import { useNavigate, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { registerInitiate } from "../../store/authSlice";
+import { registerInitiate } from "../../store/slices/authSlice";
 import { upload } from "../../firebase";
 
 const theme = createTheme();

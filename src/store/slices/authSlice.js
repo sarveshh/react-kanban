@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { auth, googleAuthProvider } from "../firebase";
+import { auth, googleAuthProvider } from "../../firebase";
 
 const initialState = {
   loading: false,

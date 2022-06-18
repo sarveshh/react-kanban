@@ -5,11 +5,11 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import { useDispatch, useSelector } from "react-redux";
-import { logoutInitiate } from "../../store/authSlice";
+import { logoutInitiate } from "../../store/slices/authSlice";
 import { useNavigate } from "react-router-dom";
 import { IconContext } from "react-icons/lib";
 import { MdLightMode, MdDarkMode } from "react-icons/md";
-import { nightModeActions } from "../../store/nightModeSlice";
+import { nightModeActions } from "../../store/slices/nightModeSlice";
 
 export default function Navbar() {
   const isLightMode = useSelector((state) => state.nightMode.isLightMode);
@@ -50,7 +50,7 @@ export default function Navbar() {
             <IconButton
               size="large"
               color="inherit"
-              onClick={() => dispatch(nightModeActions.toggleNightMode())}
+              onClick={() => dispatch(nightModeActions.toggleMode())}
             >
               <IconContext.Provider
                 value={{

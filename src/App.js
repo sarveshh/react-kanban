@@ -6,7 +6,7 @@ import SignUp from "./components/Authentication/SignUp";
 import SignIn from "./components/Authentication/SignIn";
 import LoggedInLayout from "./components/LoggedInLayout";
 import { auth } from "./firebase";
-import { setUser } from "./store/authSlice";
+import { setUser } from "./store/slices/authSlice";
 
 //Mui Imports
 import { CssBaseline } from "@mui/material";

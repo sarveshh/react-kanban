@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import authReducer from "./authSlice";
-import nightModeReducer from "./nightModeSlice";
+import authReducer from "./slices/authSlice";
+import nightModeReducer from "./slices/nightModeSlice";
 
 const store = configureStore({
   reducer: {
