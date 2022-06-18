@@ -96,7 +96,7 @@ const AppLayout = () => {
 
   useEffect(() => {
     if (currentUser === null) {
-      navigate("/signin");
+      navigate("/");
       setAuth(false);
     } else {
       setAuth(true);

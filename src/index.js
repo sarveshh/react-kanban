@@ -10,6 +10,7 @@ import App from "./App";
 
 //MUI Imports
 import GlobalStyles from "@mui/material/GlobalStyles";
+import { HashRouter } from "react-router-dom";
 
 const globalStyle = {
   "*": {
@@ -22,9 +23,11 @@ const globalStyle = {
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <GlobalStyles styles={globalStyle} />
-      <App />
-    </Provider>
+    <HashRouter>
+      <Provider store={store}>
+        <GlobalStyles styles={globalStyle} />
+        <App />
+      </Provider>
+    </HashRouter>
   </React.StrictMode>
 );

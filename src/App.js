@@ -12,7 +12,7 @@ import { CssBaseline } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material";
 
 //Dependency Imports
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Page404 from "./components/Page404";
 
@@ -58,15 +58,13 @@ function App() {
   return (
     <div>
       <ThemeProvider theme={theme}>
-        <BrowserRouter>
-          <CssBaseline />
-          <Routes>
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/signin" element={<SignIn />} />
-            <Route exact path="/" element={<Dashboard />} />
-            <Route path="*" element={<Page404 />} />
-          </Routes>
-        </BrowserRouter>
+        <CssBaseline />
+        <Routes>
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/" element={<SignIn />} />
+          <Route exact path="/app" element={<Dashboard />} />
+          <Route path="*" element={<Page404 />} />
+        </Routes>
       </ThemeProvider>
     </div>
   );

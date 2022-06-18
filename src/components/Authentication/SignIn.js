@@ -30,7 +30,7 @@ export default function SignIn() {
 
   useEffect(() => {
     if (currentUser) {
-      navigate("/");
+      navigate("/app");
     }
   }, [currentUser, navigate]);
   const handleGoogleSignIn = () => {

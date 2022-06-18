@@ -1,7 +1,8 @@
 import React from "react";
 import { Grid, Paper } from "@mui/material";
-import SmallPieChart from "./PieChart";
-import StackedChart from "./StackedChart";
+
+const SmallPieChart = React.lazy(() => import("./PieChart"));
+const StackedChart = React.lazy(() => import("./StackedChart"));
 
 const Dashboard = () => {
   return (
