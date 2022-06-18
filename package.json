@@ -1,7 +1,6 @@
 {
   "name": "kanban-neosoft",
   "version": "0.1.0",
-  "homepage": "https://sarveshh.github.io/sarvesh-patil-15062022",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.9.3",
