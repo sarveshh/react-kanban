@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  boards: [
+  boards: JSON.parse(localStorage.getItem("kanban")) || [
     {
       id: 1,
       title: "Backlog",
@@ -44,36 +44,30 @@ const taskManagerSlice = createSlice({
       };
       const index = state.boards.findIndex((board) => board.id === boardId);
       if (index < 0) return;
-      const newBoards = [...state.boards];
-      newBoards[index].cards.push(card);
-      return { ...state, boards: newBoards };
+      state.boards[index].cards.push(card);
     },
     markCardAsCompleted: (state, action) => {
       const { cardId, boardId } = action.payload;
       const index = state.boards.findIndex((board) => board.id === boardId);
       if (index < 0) return;
-      const newBoards = [...state.boards];
-      newBoards[index].cards = newBoards[index].cards.map((card) => {
+      state.boards[index].cards = state.boards[index].cards.map((card) => {
         if (card.id === cardId) {
           card.completed = !card.completed;
         }
-        return card;
       });
-      return { ...state, boards: newBoards };
     },
     removeCard: (state, action) => {
       const { cardId, boardId } = action.payload;
       const index = state.boards.findIndex((board) => board.id === boardId);
       if (index < 0) return;
-      const newBoards = [...state.boards];
-      newBoards[index].cards = newBoards[index].cards.filter(
+      state.boards[index].cards = state.boards[index].cards.filter(
         (card) => card.id !== cardId
       );
-      return { ...state, boards: newBoards };
     },
     handleCardDragEnter: (state, action) => {
       const { cardId, boardId } = action.payload;
-      return { ...state, target: { cardId, boardId } };
+      state.target.cardId = cardId;
+      state.target.boardId = boardId;
     },
     handleCardDragLeave: (state, action) => {
       const { cardId, boardId } = action.payload;
@@ -98,11 +92,9 @@ const taskManagerSlice = createSlice({
       );
       if (targetCardIndex < 0) return;
 
-      const tempBoards = [...state.boards];
-      const tempCard = tempBoards[sourceBoardIndex].cards[sourceCardIndex];
-      tempBoards[sourceBoardIndex].cards.splice(sourceCardIndex, 1);
-      tempBoards[targetBoardIndex].cards.splice(targetCardIndex, 0, tempCard);
-      return { ...state, boards: tempBoards };
+      const tempCard = state.boards[sourceBoardIndex].cards[sourceCardIndex];
+      state.boards[sourceBoardIndex].cards.splice(sourceCardIndex, 1);
+      state.boards[targetBoardIndex].cards.splice(targetCardIndex, 0, tempCard);
     },
     updateCard: (state, action) => {
       const { cardId, boardId, card } = action.payload;
@@ -118,7 +110,6 @@ const taskManagerSlice = createSlice({
 
       const newBoards = [...state.boards];
       newBoards[boardIndex].cards[cardIndex] = card;
-      return { ...state, boards: newBoards };
     },
     shiftCardToPreviousBlock: (state, action) => {
       const { cardId, boardId } = action.payload;
@@ -131,11 +122,9 @@ const taskManagerSlice = createSlice({
       );
       if (cardIndex < 0) return;
 
-      const newBoards = [...state.boards];
-      const tempCard = newBoards[boardIndex].cards[cardIndex];
-      newBoards[boardIndex].cards.splice(cardIndex, 1);
-      newBoards[boardIndex - 1].cards.push(tempCard);
-      return { ...state, boards: newBoards };
+      const tempCard = state.boards[boardIndex].cards[cardIndex];
+      state.boards[boardIndex].cards.splice(cardIndex, 1);
+      state.boards[boardIndex - 1].cards.push(tempCard);
     },
     shiftCardToNextBlock: (state, action) => {
       const { cardId, boardId } = action.payload;
@@ -148,28 +137,9 @@ const taskManagerSlice = createSlice({
       );
       if (cardIndex < 0) return;
 
-      const newBoards = [...state.boards];
-      const tempCard = newBoards[boardIndex].cards[cardIndex];
-      newBoards[boardIndex].cards.splice(cardIndex, 1);
-      newBoards[boardIndex + 1].cards.push(tempCard);
-      return { ...state, boards: newBoards };
-    },
-    disableBackButton: (state, action) => {
-      const { boardId } = action.payload;
-      const boardIndex = state.boards.findIndex(
-        (board) => board.id === boardId
-      );
-      if (boardIndex < 0) return;
-      return boardIndex === 0;
-    },
-
-    disableForwardButton: (state, action) => {
-      const { boardId } = action.payload;
-      const boardIndex = state.boards.findIndex(
-        (board) => board.id === boardId
-      );
-      if (boardIndex < 0) return;
-      return boardIndex === state.boards.length - 1;
+      const tempCard = state.boards[boardIndex].cards[cardIndex];
+      state.boards[boardIndex].cards.splice(cardIndex, 1);
+      state.boards[boardIndex + 1].cards.push(tempCard);
     },
   },
 });

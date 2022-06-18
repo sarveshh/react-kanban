@@ -1,13 +1,26 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Typography } from "@mui/material";
 import { MdEdit } from "react-icons/md";
 import { AiFillDelete } from "react-icons/ai";
 import { FaBackward, FaForward } from "react-icons/fa";
 import { CardContainer, CardFooter, CardHeader } from "./CardStyles";
-import CardInfo from "./CardInfo/CardInfo";
+import CardInfo from "./CardInfo";
 import { IconButton, Checkbox, Box, Tooltip } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { taskManagerActions } from "../../../store/slices/taskManagerSlice";
 
 const Card = (props) => {
+  const dispatch = useDispatch();
+  const [values, setValues] = useState({ ...props.card });
+  useEffect(() => {
+    dispatch(
+      taskManagerActions.updateCard({
+        cardId: props.card.id,
+        boardId: props.boardId,
+        card: values,
+      })
+    );
+  }, [values]);
   const [showCardInfo, setShowCardInfo] = React.useState(false);
   return (
     <>
@@ -16,7 +29,6 @@ const Card = (props) => {
           card={props.card}
           onClose={() => setShowCardInfo(false)}
           open={showCardInfo}
-          updateCard={props.updateCard}
           boardId={props.boardId}
         />
       )}
@@ -24,10 +36,20 @@ const Card = (props) => {
         priority={props.card.priority}
         draggable
         onDragEnd={() =>
-          props.handleCardDragLeave(props.card?.id, props.boardId)
+          dispatch(
+            taskManagerActions.handleCardDragLeave({
+              cardId: props.card?.id,
+              boardId: props.boardId,
+            })
+          )
         }
         onDragEnter={() =>
-          props.handleCardDragEnter(props.card?.id, props.boardId)
+          dispatch(
+            taskManagerActions.handleCardDragEnter({
+              cardId: props.card?.id,
+              boardId: props.boardId,
+            })
+          )
         }
       >
         <Box display="flex">
@@ -37,7 +59,7 @@ const Card = (props) => {
               checked={props.card?.completed}
               disabled={props.card?.completed}
               onChange={() =>
-                props.markCardAsCompleted(props.card?.id, props.boardId)
+                setValues({ ...values, completed: !values.completed })
               }
             />
           </Tooltip>
@@ -50,9 +72,14 @@ const Card = (props) => {
         </CardFooter>
         <CardFooter>
           <IconButton
-            disabled={props.disableBackButton(props.boardId)}
+            disabled={props.boardId === 1}
             onClick={() =>
-              props.shiftCardToPrevious(props.card?.id, props.boardId)
+              dispatch(
+                taskManagerActions.shiftCardToPreviousBlock({
+                  cardId: props.card?.id,
+                  boardId: props.boardId,
+                })
+              )
             }
           >
             <FaBackward color="#777" />
@@ -61,13 +88,27 @@ const Card = (props) => {
             <MdEdit color="#777" />
           </IconButton>
           <IconButton
-            onClick={() => props.removeCard(props.card?.id, props.boardId)}
+            onClick={() =>
+              dispatch(
+                taskManagerActions.removeCard({
+                  cardId: props.card?.id,
+                  boardId: props.boardId,
+                })
+              )
+            }
           >
             <AiFillDelete color="#777" />
           </IconButton>
           <IconButton
-            disabled={props.disableNextButton(props.boardId)}
-            onClick={() => props.shiftCardToNext(props.card?.id, props.boardId)}
+            disabled={props.boardId === 4}
+            onClick={() =>
+              dispatch(
+                taskManagerActions.shiftCardToNextBlock({
+                  cardId: props.card?.id,
+                  boardId: props.boardId,
+                })
+              )
+            }
           >
             <FaForward color="#777" />
           </IconButton>
