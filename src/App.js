@@ -5,7 +5,7 @@ import SignUp from "./components/Authentication/SignUp";
 import SignIn from "./components/Authentication/SignIn";
 import { auth } from "./firebase";
 import { setUser } from "./store/slices/authSlice";
-import Dashboard from "./components/Dashboard/Dashboard";
+import Dashboard from "./components/AppLayout";
 
 //Mui Imports
 import { CssBaseline } from "@mui/material";
@@ -14,6 +14,7 @@ import { createTheme, ThemeProvider } from "@mui/material";
 //Dependency Imports
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import Page404 from "./components/Page404";
 
 function App() {
   const isLightMode = useSelector((state) => state.nightMode.isLightMode);
@@ -65,7 +66,8 @@ function App() {
           <Routes>
             <Route path="/signup" element={<SignUp />} />
             <Route path="/signin" element={<SignIn />} />
-            <Route exact path="/app" element={<Dashboard />} />
+            <Route exact path="/app/*" element={<Dashboard />} />
+            <Route path="*" element={<Page404 />} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

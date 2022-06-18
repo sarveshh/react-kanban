@@ -3,7 +3,7 @@ import Board from "./Board/Board";
 
 import { Box } from "@mui/material";
 
-const LoggedInLayout = () => {
+const TaskManager = () => {
   const [openTrash, setOpenTrash] = React.useState(false);
 
   const [boards, setBoards] = useState(
@@ -206,4 +206,4 @@ const LoggedInLayout = () => {
   );
 };
 
-export default LoggedInLayout;
+export default TaskManager;
