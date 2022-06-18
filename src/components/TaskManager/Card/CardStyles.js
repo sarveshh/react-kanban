@@ -34,4 +34,7 @@ export const CardFooter = styled(Box)(({ theme }) => ({
   justifyContent: "space-between",
   alignItems: "center",
   padding: "10px",
+  "@media (max-width:1000px)": {
+    display: "block",
+  },
 }));

@@ -9,18 +9,17 @@ import {
 } from "@mui/material";
 
 import { customIcons } from "../../../data";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { taskManagerActions } from "../../../store/slices/taskManagerSlice";
 
 const AddCard = (props) => {
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
-
   const [inputValue, setInputValue] = useState("");
   const [date, setDate] = useState(null);
-  const [priority, setPriority] = useState(4);
+  const [priority, setPriority] = useState("whitesmoke");
 
-  const testClick = (id) => {
+  const getPriority = (id) => {
     let priorityColor = customIcons.find((item) => item.id === id).color;
     setPriority(priorityColor);
   };
@@ -80,7 +79,7 @@ const AddCard = (props) => {
               Priority
             </Typography>
             {customIcons.map((icon) => (
-              <Box key={icon.id} onClick={() => testClick(icon.id)}>
+              <Box key={icon.id} onClick={() => getPriority(icon?.id || 4)}>
                 <Tooltip title={icon.label}>
                   <IconButton>{icon.icon}</IconButton>
                 </Tooltip>

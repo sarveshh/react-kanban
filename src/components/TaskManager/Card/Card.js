@@ -55,7 +55,7 @@ const Card = (props) => {
         <Box display="flex">
           <Tooltip title="Mark as Completed">
             <Checkbox
-              sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
+              sx={{ "& .MuiSvgIcon-root": { fontSize: 28, color: "#808080" } }}
               checked={props.card?.completed}
               disabled={props.card?.completed}
               onChange={() =>
