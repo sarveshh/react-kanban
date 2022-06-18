@@ -18,7 +18,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logoutInitiate } from "../store/slices/authSlice";
 import { nightModeActions } from "../store/slices/nightModeSlice";
-import { Link } from "react-router-dom";
 import {
   MdLightMode,
   MdDarkMode,
@@ -28,7 +27,6 @@ import {
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import { Routes, Route } from "react-router-dom";
 import TaskManager from "./TaskManager/TaskManager";
 import DashboardMain from "./Dashboard/Dashboard";
 
@@ -135,7 +133,7 @@ const AppLayout = () => {
             noWrap
             sx={{ flexGrow: 1 }}
           >
-            Dashboard
+            {showKanban ? "Task Manager" : "Dashboard"}
           </Typography>
           {auth && (
             <>
@@ -175,6 +173,9 @@ const AppLayout = () => {
             px: [1],
           }}
         >
+          <Typography variant="h5" noWrap sx={{ ml: 3, mr: 5 }}>
+            Kanban
+          </Typography>
           <IconButton onClick={toggleDrawer}>
             <FaChevronLeft />
           </IconButton>
