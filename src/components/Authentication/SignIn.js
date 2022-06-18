@@ -29,6 +29,7 @@ const theme = createTheme();
 export default function SignIn() {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.auth.currentUser);
+  const key = process.env.REACT_APP_GOOGLE_RECAPTCHA_SITE_KEY;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -104,11 +105,7 @@ export default function SignIn() {
               autoComplete="current-password"
               onChange={handleChange}
             />
-            <ReCAPTCHA
-              sitekey="6LdXynggAAAAAFivq1gC112-n1E6TedfKkEHW0ov"
-              size="normal"
-              theme="light"
-            />
+            <ReCAPTCHA sitekey={key} size="normal" theme="light" />
             <Button
               type="submit"
               fullWidth
