@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import { Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Page404 from "./components/Page404";
+import AppLayout from "./components/AppLayout";
 
 function App() {
   const isLightMode = useSelector((state) => state.nightMode.isLightMode);
@@ -62,7 +63,7 @@ function App() {
         <Routes>
           <Route path="/signup" element={<SignUp />} />
           <Route path="/" element={<SignIn />} />
-          <Route exact path="/app" element={<Dashboard />} />
+          <Route exact path="/app" element={<AppLayout />} />
           <Route path="*" element={<Page404 />} />
         </Routes>
       </ThemeProvider>
