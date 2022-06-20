@@ -192,7 +192,7 @@ const AppLayout = () => {
             <ListItemIcon>
               <MdOutlineAccessTimeFilled />
             </ListItemIcon>
-            <ListItemText primary="Orders" />
+            <ListItemText primary="Task Manager" />
           </ListItemButton>{" "}
           <Divider sx={{ my: 1 }} />
         </List>
