@@ -182,7 +182,7 @@ export default function SignUp() {
         <Button
           variant="text"
           LinkComponent={Link}
-          to="/signin"
+          to="/"
           fullWidth
           sx={{ mt: 1 }}
         >
