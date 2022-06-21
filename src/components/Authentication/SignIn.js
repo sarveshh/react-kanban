@@ -23,6 +23,7 @@ import {
 } from "../../store/slices/authSlice";
 
 export default function SignIn() {
+  const [disabled, setDisabled] = useState(true);
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.auth.currentUser);
   const key = process.env.REACT_APP_GOOGLE_RECAPTCHA_SITE_KEY;
@@ -47,6 +48,13 @@ export default function SignIn() {
     }
     dispatch(loginInitiate(email, password));
     setState({ email: "", password: "" });
+  };
+
+  //disable signin button if recaptcha is not checked
+  const handleChangeRecaptcha = (value) => {
+    if (value) {
+      setDisabled(false);
+    }
   };
 
   const [state, setState] = useState({
@@ -98,7 +106,12 @@ export default function SignIn() {
             onChange={handleChange}
           />
           <Box fullWidth display="flex" justifyContent="center" sx={{ mt: 1 }}>
-            <ReCAPTCHA sitekey={key} size="normal" theme="light" />
+            <ReCAPTCHA
+              sitekey={key}
+              size="normal"
+              theme="light"
+              onChange={handleChangeRecaptcha}
+            />
           </Box>
           <Button
             type="submit"
@@ -106,6 +119,7 @@ export default function SignIn() {
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
             onClick={handleSubmit}
+            disabled={disabled}
           >
             Sign In
           </Button>
@@ -113,6 +127,7 @@ export default function SignIn() {
             fullWidth
             variant="outlined"
             onClick={() => handleGoogleSignIn()}
+            disabled={disabled}
           >
             <IconContext.Provider
               value={{

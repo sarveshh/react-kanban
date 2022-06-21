@@ -8,10 +8,25 @@ import CardInfo from "./CardInfo";
 import { IconButton, Checkbox, Box, Tooltip } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { taskManagerActions } from "../../../store/slices/taskManagerSlice";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 
 const Card = (props) => {
   const dispatch = useDispatch();
   const [values, setValues] = useState({ ...props.card });
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   useEffect(() => {
     dispatch(
       taskManagerActions.updateCard({
@@ -32,6 +47,43 @@ const Card = (props) => {
           boardId={props.boardId}
         />
       )}
+
+      {/* <-------------------------------------Start of confirmm delete dialog --------------> */}
+
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <Typography variant="h5" sx={{ m: 2 }}>
+          Delete this task?
+        </Typography>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            {props.card.title}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Disagree</Button>
+          <Button
+            onClick={() =>
+              dispatch(
+                taskManagerActions.removeCard({
+                  cardId: props.card?.id,
+                  boardId: props.boardId,
+                })
+              )
+            }
+            autoFocus
+          >
+            Agree
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* <-------------------------------------End of confirmm delete dialog --------------> */}
+
       <CardContainer
         priority={props.card.priority}
         draggable
@@ -87,16 +139,7 @@ const Card = (props) => {
           <IconButton onClick={() => setShowCardInfo(true)}>
             <MdEdit color="#777" />
           </IconButton>
-          <IconButton
-            onClick={() =>
-              dispatch(
-                taskManagerActions.removeCard({
-                  cardId: props.card?.id,
-                  boardId: props.boardId,
-                })
-              )
-            }
-          >
+          <IconButton onClick={handleClickOpen}>
             <AiFillDelete color="#777" />
           </IconButton>
           <IconButton

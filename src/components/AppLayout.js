@@ -78,6 +78,12 @@ const Drawer = styled(MuiDrawer, {
 
 const AppLayout = () => {
   const [open, setOpen] = React.useState(true);
+  useEffect(() => {
+    if (window.innerWidth < 768) {
+      setOpen(false);
+    }
+  }, []);
+
   const toggleDrawer = () => {
     setOpen(!open);
   };
