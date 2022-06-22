@@ -66,9 +66,7 @@ export default function SmallPieChart() {
               backgroundColor: `${c.color}`,
               marginRight: "15px",
             }}
-          >
-            .
-          </Box>
+          ></Box>
           <Typography>{c.label}</Typography>
         </Box>
       ))}

@@ -65,7 +65,7 @@ const Card = (props) => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
+          <Button onClick={handleClose}>Cancel</Button>
           <Button
             onClick={() =>
               dispatch(
@@ -77,7 +77,7 @@ const Card = (props) => {
             }
             autoFocus
           >
-            Agree
+            Delete
           </Button>
         </DialogActions>
       </Dialog>

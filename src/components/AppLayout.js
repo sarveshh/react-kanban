@@ -29,6 +29,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import TaskManager from "./TaskManager/TaskManager";
 import DashboardMain from "./Dashboard/Dashboard";
+import { BsFillPersonFill } from "react-icons/bs";
 
 const drawerWidth = 240;
 
@@ -164,6 +165,19 @@ const AppLayout = () => {
                   }}
                 >
                   {isLightMode === true ? <MdDarkMode /> : <MdLightMode />}
+                </IconContext.Provider>
+              </IconButton>
+              <IconButton size="large" color="inherit">
+                <IconContext.Provider
+                  value={{
+                    style: {
+                      width: "30px",
+                      height: "30px",
+                      color: isLightMode === true ? "black" : "white",
+                    },
+                  }}
+                >
+                  <BsFillPersonFill />
                 </IconContext.Provider>
               </IconButton>
             </>
