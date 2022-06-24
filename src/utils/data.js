@@ -32,3 +32,8 @@ export const customIcons = [
     color: "whitesmoke",
   },
 ];
+
+export const pageData = [
+  { to: "about", title: "About" },
+  { to: "features", title: "Features" },
+];

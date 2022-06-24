@@ -8,7 +8,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 
 import { IconButton, Tooltip, Checkbox } from "@mui/material";
-import { customIcons } from "../../../data";
+import { customIcons } from "../../../utils/data";
 import { useDispatch } from "react-redux";
 import { taskManagerActions } from "../../../store/slices/taskManagerSlice";
 

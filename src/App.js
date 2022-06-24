@@ -3,9 +3,9 @@ import React, { useEffect } from "react";
 //Components or Files
 import SignUp from "./components/Authentication/SignUp";
 import SignIn from "./components/Authentication/SignIn";
-import { auth } from "./firebase";
+import { auth } from "./utils/firebase";
 import { setUser } from "./store/slices/authSlice";
-import Dashboard from "./components/AppLayout";
+import Landing from "./components/Landing/Landing";
 
 //Mui Imports
 import { CssBaseline } from "@mui/material";
@@ -62,7 +62,8 @@ function App() {
         <CssBaseline />
         <Routes>
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/" element={<SignIn />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/" element={<Landing />} />
           <Route exact path="/app" element={<AppLayout />} />
           <Route path="*" element={<Page404 />} />
         </Routes>

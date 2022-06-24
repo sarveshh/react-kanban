@@ -8,7 +8,7 @@ import {
   Tooltip,
 } from "@mui/material";
 
-import { customIcons } from "../../../data";
+import { customIcons } from "../../../utils/data";
 import { useDispatch } from "react-redux";
 import { taskManagerActions } from "../../../store/slices/taskManagerSlice";
 

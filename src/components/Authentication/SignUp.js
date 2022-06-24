@@ -12,7 +12,7 @@ import Grid from "@mui/material/Grid";
 import { useNavigate, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { registerInitiate } from "../../store/slices/authSlice";
-import { upload } from "../../firebase";
+import { upload } from "../../utils/firebase";
 
 export default function SignUp() {
   const dispatch = useDispatch();
