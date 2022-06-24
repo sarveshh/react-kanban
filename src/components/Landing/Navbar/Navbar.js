@@ -32,53 +32,49 @@ const Navbar = ({ toggle }) => {
 
   return (
     <>
-      <IconContext.Provider value={{ color: "#fff" }}>
-        <Nav scrollnav={scrollnav.toString()}>
-          <NavbarContainer>
-            <NavLogo to="/">
-              <IconContext.Provider
-                value={{
-                  style: {
-                    width: "30px",
-                    height: "30px",
-                    marginRight: "15px",
-                  },
-                }}
-              >
-                <BsCalendarCheckFill />
-              </IconContext.Provider>
-              Planner
-            </NavLogo>
-            <MobileIcon onClick={toggle}>
-              <FaBars />
-            </MobileIcon>
-            <NavMenu>
-              {pageData.map((pageInfo, index) => (
-                <NavItem key={index}>
-                  <NavLinks
-                    to={pageInfo.to}
-                    smooth={true.toString()}
-                    duration={500}
-                    spy={true.toString()}
-                    exact="true"
-                    offset={-80}
-                  >
-                    {pageInfo.title}
-                  </NavLinks>
-                </NavItem>
-              ))}
-            </NavMenu>
-            <NavMenu>
-              <NavBtn>
-                <>
-                  <NavBtnLink to="/signin">Login</NavBtnLink>
-                  <NavBtnLink to="/signup">Sign Up</NavBtnLink>
-                </>
-              </NavBtn>
-            </NavMenu>
-          </NavbarContainer>
-        </Nav>
-      </IconContext.Provider>
+      <Nav scrollnav={scrollnav.toString()}>
+        <NavbarContainer>
+          <NavLogo to="/">
+            <IconContext.Provider
+              value={{
+                style: {
+                  width: "30px",
+                  height: "30px",
+                  marginRight: "15px",
+                },
+              }}
+            >
+              <BsCalendarCheckFill />
+            </IconContext.Provider>
+            Planner
+          </NavLogo>
+          <MobileIcon onClick={toggle}>
+            <FaBars />
+          </MobileIcon>
+          <NavMenu>
+            {pageData.map((pageInfo, index) => (
+              <NavItem key={index}>
+                <NavLinks
+                  to={pageInfo.to}
+                  duration={500}
+                  exact="true"
+                  offset={-80}
+                >
+                  {pageInfo.title}
+                </NavLinks>
+              </NavItem>
+            ))}
+          </NavMenu>
+          <NavMenu>
+            <NavBtn>
+              <>
+                <NavBtnLink to="/signin">Login</NavBtnLink>
+                <NavBtnLink to="/signup">Sign Up</NavBtnLink>
+              </>
+            </NavBtn>
+          </NavMenu>
+        </NavbarContainer>
+      </Nav>
     </>
   );
 };

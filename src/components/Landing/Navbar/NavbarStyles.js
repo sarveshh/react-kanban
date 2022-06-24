@@ -90,7 +90,7 @@ export const NavBtn = styled("div")(({ theme }) => ({
   },
 }));
 
-export const NavBtnLink = styled("a")(({ theme }) => ({
+export const NavBtnLink = styled(Link)(({ theme }) => ({
   borderRadius: "50px",
   background: "#01bf71",
   whiteSpace: "nowrap",

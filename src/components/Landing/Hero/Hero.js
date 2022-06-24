@@ -12,6 +12,7 @@ import {
 import { SquaredButtonWithLink, SquaredButton } from "../ButtonElements";
 import banner from "../../../images/banner.png";
 import { Box } from "@mui/material";
+
 const Hero = () => {
   const [hover, setHover] = useState(false);
 
@@ -40,14 +41,12 @@ const Hero = () => {
             </a>
           </SquaredButton>
           <SquaredButtonWithLink
-            to="SignUp"
+            to="/signup"
             onMouseEnter={onHover}
             background="#25282c"
             onMouseLeave={onHover}
             dark="true"
-            smooth={true.toString()}
             duration={500}
-            spy={true.toString()}
             exact="true"
             offset={-80}
           >
